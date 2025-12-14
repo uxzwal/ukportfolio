@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 border-t border-border/30 bg-muted/10">
+    <footer className="py-12 border-t border-border/30 bg-[hsl(0_0%_2%)]">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
@@ -60,10 +60,10 @@ const Footer = () => {
                 href="https://linkedin.com/in/youjjwal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-[#0A66C2] transition-colors"
               >
                 <Linkedin className="w-4 h-4" />
-                linkedin.com/in/youjjwal
+                Ujjwal
               </a>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4" />

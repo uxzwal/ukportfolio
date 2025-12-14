@@ -6,36 +6,36 @@
 
 @layer base {
   :root {
-    /* Cyberpunk Dark Theme */
-    --background: 220 25% 5%;
+    /* Solid Dark Black Theme */
+    --background: 0 0% 2%;
     --foreground: 210 40% 95%;
 
-    --card: 220 20% 8%;
+    --card: 0 0% 4%;
     --card-foreground: 210 40% 95%;
 
-    --popover: 220 20% 8%;
+    --popover: 0 0% 4%;
     --popover-foreground: 210 40% 95%;
 
     /* Electric Blue */
     --primary: 200 100% 50%;
-    --primary-foreground: 220 25% 5%;
+    --primary-foreground: 0 0% 2%;
 
     /* Neon Green */
     --accent: 150 100% 45%;
-    --accent-foreground: 220 25% 5%;
+    --accent-foreground: 0 0% 2%;
 
     /* Purple Accent */
     --secondary: 270 80% 60%;
     --secondary-foreground: 210 40% 95%;
 
-    --muted: 220 15% 12%;
+    --muted: 0 0% 8%;
     --muted-foreground: 215 20% 55%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 15% 15%;
-    --input: 220 15% 12%;
+    --border: 0 0% 12%;
+    --input: 0 0% 8%;
     --ring: 200 100% 50%;
 
     --radius: 0.75rem;
@@ -46,12 +46,12 @@
     --glow-secondary: 0 0 30px hsl(270 80% 60% / 0.4);
     
     --gradient-hero: linear-gradient(135deg, hsl(200 100% 50%), hsl(150 100% 45%), hsl(270 80% 60%));
-    --gradient-card: linear-gradient(145deg, hsl(220 20% 10%), hsl(220 20% 6%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 6%), hsl(0 0% 3%));
     --gradient-border: linear-gradient(135deg, hsl(200 100% 50% / 0.5), hsl(150 100% 45% / 0.3), hsl(270 80% 60% / 0.4));
   }
 
   .dark {
-    --background: 220 25% 5%;
+    --background: 0 0% 2%;
     --foreground: 210 40% 95%;
   }
 }
@@ -207,5 +207,46 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/50;
+  }
+
+  /* Neon Corner Highlights */
+  .neon-corners {
+    @apply relative;
+  }
+
+  .neon-corners::before,
+  .neon-corners::after {
+    content: '';
+    @apply absolute w-8 h-8 pointer-events-none;
+  }
+
+  .neon-corners::before {
+    @apply top-0 left-0;
+    background: linear-gradient(135deg, currentColor 0%, transparent 50%);
+    opacity: 0.6;
+    filter: blur(1px);
+  }
+
+  .neon-corners::after {
+    @apply bottom-0 right-0;
+    background: linear-gradient(-45deg, currentColor 0%, transparent 50%);
+    opacity: 0.6;
+    filter: blur(1px);
+  }
+
+  /* Neon input corners */
+  .neon-input {
+    @apply relative;
+    background: hsl(0 0% 3%);
+  }
+
+  .neon-input::before {
+    content: '';
+    @apply absolute -inset-[1px] rounded-lg pointer-events-none;
+    background: linear-gradient(135deg, hsl(200 100% 50% / 0.3) 0%, transparent 30%, transparent 70%, hsl(150 100% 45% / 0.3) 100%);
+  }
+
+  .neon-input:focus-within::before {
+    background: linear-gradient(135deg, hsl(200 100% 50% / 0.6) 0%, transparent 30%, transparent 70%, hsl(150 100% 45% / 0.6) 100%);
   }
 }
