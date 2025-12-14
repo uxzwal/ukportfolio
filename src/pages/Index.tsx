@@ -6,10 +6,12 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
+import CursorGlow from "@/components/CursorGlow";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-[hsl(0_0%_2%)] text-foreground overflow-x-hidden">
+      <CursorGlow />
       <Navbar />
       <main>
         <Hero />
