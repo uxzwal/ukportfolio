@@ -1,9 +1,20 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
+import { useState, useEffect } from "react";
+
+const taglines = ["AI-Powered", "Lightning Fast", "Future-Ready", "Innovative", "Cutting-Edge"];
 
 const Hero = () => {
+  const [currentTagline, setCurrentTagline] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTagline((prev) => (prev + 1) % taglines.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[hsl(0_0%_2%)]">
       {/* Background Image with Overlay */}
@@ -85,16 +96,28 @@ const Hero = () => {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              Powered by{" "}
+              That's{" "}
             </motion.span>
-            <motion.span 
-              className="text-primary inline-block"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-            >
-              AI
-            </motion.span>
+            <span className="relative inline-block min-w-[200px] md:min-w-[320px]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentTagline}
+                  className="text-primary inline-block"
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  {taglines[currentTagline]}
+                </motion.span>
+              </AnimatePresence>
+              <motion.span
+                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+              />
+            </span>
           </motion.h1>
 
           {/* Subheadline */}

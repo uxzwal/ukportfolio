@@ -5,22 +5,34 @@ import NeonCard from "@/components/NeonCard";
 
 const clientProjects = [
   {
-    title: "Nexus Dynamics",
-    subtitle: "Launch Case Study",
+    title: "RP Bill",
+    subtitle: "Live Project",
     description:
-      "A complete business intelligence dashboard built for a fintech startup. Leveraged GPT-4 for automated report generation and natural language queries, reducing analytics time by 70%.",
-    tags: ["React", "AI Analytics", "Dashboard"],
+      "A comprehensive billing and invoicing solution designed for businesses. Features automated bill generation, payment tracking, and detailed financial reports with a clean, intuitive interface.",
+    tags: ["React", "Billing System", "Dashboard"],
     type: "client",
     gradient: "from-primary/20 to-accent/20",
+    link: "https://rpbill.netlify.app",
   },
   {
-    title: "Artisan Collective",
-    subtitle: "Initial Beta Partnership",
+    title: "Invoice Bill",
+    subtitle: "Live Project",
     description:
-      "E-commerce platform for handcrafted goods. Implemented AI-powered product descriptions and smart search, increasing conversion rates by 45% in the first month.",
-    tags: ["E-commerce", "AI Content", "Next.js"],
+      "Advanced invoice management platform with real-time dashboard, automated invoicing workflows, and comprehensive business analytics for seamless financial operations.",
+    tags: ["Full Stack", "Invoicing", "Analytics"],
     type: "client",
     gradient: "from-accent/20 to-secondary/20",
+    link: "https://invoicebill.netlify.app/dashboard",
+  },
+  {
+    title: "Kontent AI",
+    subtitle: "AI-Powered Project",
+    description:
+      "An innovative AI content generation platform built with Lovable. Leverages cutting-edge AI models for automated content creation, making content marketing effortless and efficient.",
+    tags: ["AI/ML", "Content Generation", "Lovable"],
+    type: "client",
+    gradient: "from-secondary/20 to-primary/20",
+    link: "https://kontentai.lovable.app",
   },
 ];
 
@@ -101,7 +113,7 @@ const Projects = () => {
             Client Case Studies
           </motion.h3>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {clientProjects.map((project, index) => (
               <motion.div
                 key={index}
@@ -110,43 +122,60 @@ const Projects = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.7, delay: index * 0.2 }}
               >
-                <NeonCard className="p-6 h-full transition-all duration-500 hover:-translate-y-2" variant="primary">
-                  {/* Gradient Header */}
-                  <div
-                    className={`h-32 rounded-lg mb-6 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30`}
-                  >
-                    <span className="text-2xl font-mono font-bold text-foreground/80">
-                      {project.title.charAt(0)}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="space-y-4">
-                    <div>
-                      <span className="text-xs font-mono text-accent uppercase tracking-wider">
-                        {project.subtitle}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
+                  <NeonCard className="p-6 h-full transition-all duration-500 hover:-translate-y-2 cursor-pointer group" variant="primary">
+                    {/* Gradient Header */}
+                    <div
+                      className={`h-32 rounded-lg mb-6 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30 group-hover:scale-105 transition-transform duration-500`}
+                    >
+                      <span className="text-2xl font-mono font-bold text-foreground/80">
+                        {project.title.split(" ").map((w) => w[0]).join("")}
                       </span>
-                      <h4 className="text-xl font-mono font-bold text-foreground">
-                        {project.title}
-                      </h4>
                     </div>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30"
-                        >
-                          {tag}
+                    {/* Content */}
+                    <div className="space-y-4">
+                      <div>
+                        <span className="text-xs font-mono text-accent uppercase tracking-wider">
+                          {project.subtitle}
                         </span>
-                      ))}
+                        <h4 className="text-xl font-mono font-bold text-foreground group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h4>
+                      </div>
+
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="pt-2 flex items-center gap-2 text-primary text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>View Project</span>
+                        <motion.span
+                          animate={{ x: [0, 4, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          →
+                        </motion.span>
+                      </div>
                     </div>
-                  </div>
-                </NeonCard>
+                  </NeonCard>
+                </a>
               </motion.div>
             ))}
           </div>
