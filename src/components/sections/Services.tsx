@@ -1,33 +1,49 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Sparkles, ShoppingCart, Code2, ArrowRight } from "lucide-react";
+import { Bot, Layout, Rocket, Palette, Cloud, ArrowRight } from "lucide-react";
 import { FadeInUp, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
 
 const services = [
   {
-    icon: Sparkles,
-    title: "AI-Powered Portfolio Sites",
+    icon: Bot,
+    title: "AI-Powered Web Applications",
     description:
-      "Stunning personal and professional portfolios that showcase your work with intelligent design, dynamic animations, and optimized performance. Built to convert visitors into clients.",
-    features: ["Smart Layout Generation", "SEO Optimized", "Performance Tuned"],
+      "Intelligent chatbots, dashboards, and automation tools built with cutting-edge AI integration for smarter user experiences.",
+    features: ["Chatbots", "Dashboards", "AI Tools"],
     color: "primary",
   },
   {
-    icon: ShoppingCart,
-    title: "Intelligent E-commerce Platforms",
+    icon: Layout,
+    title: "No-Code Websites & Landing Pages",
     description:
-      "Full-featured online stores powered by AI for personalized shopping experiences, smart inventory predictions, and conversion-optimized checkout flows.",
-    features: ["Smart Product Recommendations", "Secure Payments", "Analytics Dashboard"],
+      "Beautiful, responsive, and conversion-optimized websites built rapidly using modern no-code platforms.",
+    features: ["Responsive Design", "Modern UI", "Fast Delivery"],
     color: "accent",
   },
   {
-    icon: Code2,
-    title: "Fully Functional Custom Websites",
+    icon: Rocket,
+    title: "SaaS MVP Development",
     description:
-      "Bespoke web applications tailored to your exact requirements. From landing pages to complex dashboards, every line of code is crafted with AI precision.",
-    features: ["Custom Features", "API Integrations", "Scalable Architecture"],
+      "Turn your startup idea into a working product. Perfect for founders who need to validate ideas quickly and efficiently.",
+    features: ["For Startups", "Quick Launch", "Scalable"],
     color: "secondary",
+  },
+  {
+    icon: Palette,
+    title: "Frontend UI Design",
+    description:
+      "Clean, user-friendly interfaces that look professional and convert visitors into customers.",
+    features: ["Clean Design", "User-Friendly", "Conversion Focus"],
+    color: "primary",
+  },
+  {
+    icon: Cloud,
+    title: "Deployment & Hosting",
+    description:
+      "Complete deployment setup with GitHub and Netlify. Get your project live with custom domains and SSL certificates.",
+    features: ["GitHub Setup", "Netlify Deploy", "Live Product"],
+    color: "accent",
   },
 ];
 
@@ -76,19 +92,19 @@ const Services = () => {
           </TextReveal>
           <TextReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">Solutions Portfolio</span>
+              <span className="text-gradient">What I Offer</span>
             </h2>
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Comprehensive web development services powered by the latest AI technology.
-              Every project delivers measurable ROI and exceptional quality.
+              End-to-end web development services using no-code platforms and AI tools.
+              Fast delivery, professional quality.
             </p>
           </TextReveal>
         </FadeInUp>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => {
             const colors = getColorClasses(service.color);
             return (
@@ -97,31 +113,31 @@ const Services = () => {
                 initial={{ opacity: 0, y: 50, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <NeonCard 
-                  className={`p-8 h-full transition-all duration-500 hover:-translate-y-3 ${colors.glow}`}
+                  className={`p-6 h-full transition-all duration-500 hover:-translate-y-3 ${colors.glow}`}
                   variant={service.color as "primary" | "accent" | "secondary"}
                 >
                   {/* Icon */}
                   <div
-                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 border ${colors.icon} transition-transform duration-500 group-hover:scale-110`}
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 border ${colors.icon} transition-transform duration-500 group-hover:scale-110`}
                   >
-                    <service.icon className="w-7 h-7" />
+                    <service.icon className="w-6 h-6" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-mono font-bold mb-4 text-foreground">
+                  <h3 className="text-lg font-mono font-bold mb-3 text-foreground">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
                     {service.description}
                   </p>
 
                   {/* Features */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2">
                     {service.features.map((feature, i) => (
                       <span
                         key={i}
@@ -131,15 +147,6 @@ const Services = () => {
                       </span>
                     ))}
                   </div>
-
-                  {/* Learn More */}
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 text-sm font-mono text-foreground hover:text-primary transition-colors group"
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </a>
                 </NeonCard>
               </motion.div>
             );
@@ -156,7 +163,7 @@ const Services = () => {
         >
           <Button variant="hero" size="lg" asChild>
             <a href="#contact">
-              Start Your AI-Powered Project
+              Let's Discuss Your Project
               <ArrowRight className="w-5 h-5" />
             </a>
           </Button>

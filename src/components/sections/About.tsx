@@ -1,9 +1,31 @@
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Sparkles, Code2 } from "lucide-react";
+import { Bot, Palette, Rocket, Sparkles, Github, Linkedin } from "lucide-react";
 import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
+import { Button } from "@/components/ui/button";
 
 const About = () => {
+  const highlights = [
+    {
+      icon: Bot,
+      title: "AI Web Apps",
+      description: "Chatbots, dashboards & tools",
+      color: "primary",
+    },
+    {
+      icon: Palette,
+      title: "Frontend UI",
+      description: "Clean, responsive interfaces",
+      color: "accent",
+    },
+    {
+      icon: Rocket,
+      title: "Deployment",
+      description: "GitHub → Netlify live setup",
+      color: "secondary",
+    },
+  ];
+
   return (
     <section id="about" className="section-padding relative bg-[hsl(0_0%_1%)]">
       <div className="absolute inset-0 grid-pattern opacity-5" />
@@ -14,13 +36,18 @@ const About = () => {
           <FadeInUp className="text-center mb-12">
             <TextReveal>
               <span className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-mono mb-4">
-                About
+                About Me
               </span>
             </TextReveal>
             <TextReveal delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-                <span className="text-gradient">The Developer</span>
+                <span className="text-gradient">Ujjwal Kashyup</span>
               </h2>
+            </TextReveal>
+            <TextReveal delay={0.2}>
+              <p className="text-xl text-muted-foreground font-mono">
+                No-Code & AI Web App Developer
+              </p>
             </TextReveal>
           </FadeInUp>
 
@@ -32,120 +59,88 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <NeonCard className="p-8 md:p-12" variant="primary">
-              <div className="grid md:grid-cols-3 gap-8">
-                {/* Left - Info Cards */}
-                <div className="space-y-4">
-                  <SlideInLeft delay={0.1}>
-                    <div className="p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <Calendar className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-sm text-muted-foreground">Age</span>
-                      </div>
-                      <p className="font-mono font-bold text-foreground">18 Years</p>
-                    </div>
-                  </SlideInLeft>
-
-                  <SlideInLeft delay={0.2}>
-                    <div className="p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                          <MapPin className="w-4 h-4 text-accent" />
-                        </div>
-                        <span className="text-sm text-muted-foreground">Location</span>
-                      </div>
-                      <p className="font-mono font-bold text-foreground">Bihar, India</p>
-                      <p className="text-xs text-muted-foreground mt-1">851101</p>
-                    </div>
-                  </SlideInLeft>
-
-                  <SlideInLeft delay={0.3}>
-                    <div className="p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
-                          <Code2 className="w-4 h-4 text-secondary" />
-                        </div>
-                        <span className="text-sm text-muted-foreground">Focus</span>
-                      </div>
-                      <p className="font-mono font-bold text-foreground">AI + Web Dev</p>
-                    </div>
-                  </SlideInLeft>
+              {/* Bio */}
+              <SlideInRight className="mb-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <Sparkles className="w-6 h-6 text-primary" />
+                  <h3 className="text-2xl font-mono font-bold text-foreground">
+                    Hi, I'm Ujjwal
+                  </h3>
                 </div>
 
-                {/* Right - Bio */}
-                <SlideInRight className="md:col-span-2 space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Sparkles className="w-6 h-6 text-primary" />
-                    <h3 className="text-2xl font-mono font-bold text-foreground">
-                      Hi, I'm Ujjwal
-                    </h3>
-                  </div>
-
-                  <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      I'm an 18-year-old developer from Bihar, India, passionate about
-                      the intersection of <span className="text-primary font-semibold">artificial intelligence</span> and{" "}
-                      <span className="text-accent font-semibold">web development</span>.
-                    </motion.p>
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      What started as curiosity about how websites work has evolved into a
-                      mission: leveraging cutting-edge AI models to revolutionize how digital
-                      experiences are created. I believe AI isn't just a tool—it's a
-                      collaborator that amplifies creativity and accelerates delivery.
-                    </motion.p>
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      My approach combines the precision of traditional coding with the
-                      intelligence of modern AI systems. This means clients get{" "}
-                      <span className="text-secondary font-semibold">high-quality, production-ready websites</span>{" "}
-                      in a fraction of the traditional timeline, without sacrificing
-                      customization or attention to detail.
-                    </motion.p>
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      When I'm not coding, I'm exploring new AI models, studying design
-                      patterns, and finding ways to push the boundaries of what's possible
-                      on the web.
-                    </motion.p>
-                  </div>
-
-                  {/* Quote */}
-                  <motion.div 
-                    className="mt-6 p-4 rounded-lg bg-primary/5 border-l-4 border-primary"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-lg"
                   >
-                    <p className="text-foreground italic font-mono text-sm">
-                      "The future belongs to those who embrace AI not as a replacement,
-                      but as an enhancement to human creativity."
-                    </p>
-                  </motion.div>
-                </SlideInRight>
+                    I specialize in building <span className="text-primary font-semibold">modern web apps</span>,{" "}
+                    <span className="text-accent font-semibold">landing pages</span>, and{" "}
+                    <span className="text-secondary font-semibold">SaaS MVPs</span> using no-code platforms and AI tools.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    I also handle complete deployment using GitHub and Netlify — so clients get a fully live, 
+                    production-ready product delivered fast.
+                  </motion.p>
+                </div>
+              </SlideInRight>
+
+              {/* Highlights Grid */}
+              <div className="grid md:grid-cols-3 gap-4 mb-8">
+                {highlights.map((item, index) => (
+                  <SlideInLeft key={index} delay={0.1 * (index + 1)}>
+                    <div className="p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 hover:border-primary/50 transition-colors">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className={`w-10 h-10 rounded-lg bg-${item.color}/10 flex items-center justify-center`}>
+                          <item.icon className={`w-5 h-5 text-${item.color}`} />
+                        </div>
+                      </div>
+                      <p className="font-mono font-bold text-foreground">{item.title}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.description}</p>
+                    </div>
+                  </SlideInLeft>
+                ))}
               </div>
+
+              {/* Social Links */}
+              <motion.div 
+                className="flex flex-wrap gap-4 justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+              >
+                <Button variant="outline-glow" size="sm" asChild>
+                  <a 
+                    href="https://github.com/Youjjwal" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </a>
+                </Button>
+                <Button variant="outline-glow" size="sm" asChild>
+                  <a 
+                    href="https://linkedin.com/in/youjjwal" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    LinkedIn
+                  </a>
+                </Button>
+              </motion.div>
             </NeonCard>
           </motion.div>
         </div>

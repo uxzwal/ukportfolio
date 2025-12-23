@@ -1,4 +1,4 @@
-import { Sparkles, Mail, Linkedin, MapPin } from "lucide-react";
+import { Sparkles, Mail, Linkedin, Github } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,12 +14,12 @@ const Footer = () => {
                 <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <span className="font-mono font-bold text-lg text-foreground">
-                Ujjwal
+                Ujjwal Kashyup
               </span>
             </a>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Building the future of the web with AI-powered development. 
-              Transforming visions into reality, faster.
+              No-Code & AI Web App Developer. Building modern web apps, 
+              landing pages, and MVPs that go live fast.
             </p>
           </div>
 
@@ -57,18 +57,23 @@ const Footer = () => {
                 iamkashyup@gmail.com
               </a>
               <a
+                href="https://github.com/Youjjwal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Github className="w-4 h-4" />
+                @Youjjwal
+              </a>
+              <a
                 href="https://linkedin.com/in/youjjwal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-[#0A66C2] transition-colors"
               >
                 <Linkedin className="w-4 h-4" />
-                Ujjwal
+                Ujjwal Kashyup
               </a>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                851101, Bihar, India
-              </div>
             </div>
           </div>
         </div>
@@ -76,10 +81,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground font-mono">
-            © {currentYear} Ujjwal. All rights reserved.
+            © {currentYear} Ujjwal Kashyup. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            Built with <span className="text-primary">AI</span> + <span className="text-accent">Passion</span>
+            Built with <span className="text-primary">No-Code</span> + <span className="text-accent">AI</span>
           </p>
         </div>
       </div>

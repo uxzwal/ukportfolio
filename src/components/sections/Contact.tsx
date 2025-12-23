@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, MapPin, Send, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, Send, ArrowRight, Rocket } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
@@ -72,12 +72,12 @@ const Contact = () => {
           </TextReveal>
           <TextReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">Let's Build Together</span>
+              <span className="text-gradient">Have an idea? Let's build it.</span>
             </h2>
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Ready to transform your vision with AI-powered development?
+              Ready to turn your vision into a live product?
               Reach out and let's discuss your project.
             </p>
           </TextReveal>
@@ -98,7 +98,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-primary/50 hover:shadow-[0_0_20px_hsl(200_100%_50%_/_0.1)] neon-input-wrapper"
+                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-primary/50 hover:shadow-[0_0_20px_hsl(200_100%_50%_/_0.1)]"
                 >
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <Mail className="w-5 h-5 text-primary" />
@@ -115,6 +115,30 @@ const Contact = () => {
                     </a>
                   </div>
                 </motion.div>
+
+                {/* GitHub */}
+                <motion.a
+                  href="https://github.com/Youjjwal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 }}
+                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-foreground/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] cursor-pointer group"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center group-hover:bg-foreground/20 transition-colors">
+                    <Github className="w-5 h-5 text-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                      GitHub
+                    </p>
+                    <span className="text-foreground group-hover:text-primary transition-colors font-mono text-sm">
+                      @Youjjwal
+                    </span>
+                  </div>
+                </motion.a>
 
                 {/* LinkedIn */}
                 <motion.a
@@ -135,31 +159,10 @@ const Contact = () => {
                       LinkedIn
                     </p>
                     <span className="text-foreground group-hover:text-[#0A66C2] transition-colors font-mono text-sm">
-                      Ujjwal
+                      Ujjwal Kashyup
                     </span>
                   </div>
                 </motion.a>
-
-                {/* Location */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-accent/50 hover:shadow-[0_0_20px_hsl(150_100%_45%_/_0.1)]"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                      Location
-                    </p>
-                    <p className="text-foreground font-mono text-sm">
-                      851101, Bihar, India
-                    </p>
-                  </div>
-                </motion.div>
               </div>
 
               {/* CTA */}
@@ -168,17 +171,20 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.3 }}
               >
-                <h4 className="font-mono font-semibold text-foreground mb-2">
-                  Ready to Start?
-                </h4>
+                <div className="flex items-center gap-2 mb-2">
+                  <Rocket className="w-5 h-5 text-primary" />
+                  <h4 className="font-mono font-semibold text-foreground">
+                    Ready to Start?
+                  </h4>
+                </div>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Get a free consultation for your AI-powered project.
+                  Let's discuss your project and bring your idea to life.
                 </p>
                 <Button variant="hero" size="lg" className="w-full" asChild>
                   <a href="mailto:iamkashyup@gmail.com">
-                    Start Your AI-Powered Project
+                    Hire Me
                     <ArrowRight className="w-5 h-5" />
                   </a>
                 </Button>

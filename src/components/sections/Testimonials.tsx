@@ -5,31 +5,22 @@ import NeonCard from "@/components/NeonCard";
 
 const testimonials = [
   {
-    name: "Alex Chen",
-    role: "Founder, TechVenture",
+    name: "Happy Client",
+    role: "Startup Founder",
     content:
-      "Ujjwal transformed our vision into reality with incredible speed. His AI-powered approach delivered a stunning website in half the time we expected. The attention to detail and modern design exceeded our expectations.",
+      "Ujjwal delivered the project quickly with clean UI and smooth deployment. Very professional and easy to work with. Would definitely recommend!",
     rating: 5,
-    avatar: "AC",
+    avatar: "HC",
     gradient: "from-primary to-accent",
   },
   {
-    name: "Sarah Mitchell",
-    role: "CEO, CreativeFlow",
+    name: "Satisfied Customer",
+    role: "Business Owner",
     content:
-      "Working with Ujjwal was a game-changer. The AI-enhanced development process meant we could iterate quickly and launch our platform weeks ahead of schedule. Highly recommend for any innovative project.",
+      "Very responsive, professional, and easy to work with. The final product exceeded my expectations. Great communication throughout the project.",
     rating: 5,
-    avatar: "SM",
+    avatar: "SC",
     gradient: "from-accent to-secondary",
-  },
-  {
-    name: "David Park",
-    role: "Product Manager, InnovateLab",
-    content:
-      "The combination of cutting-edge AI technology and creative design thinking sets Ujjwal apart. Our e-commerce platform saw a 45% increase in conversions after the redesign. Exceptional work!",
-    rating: 5,
-    avatar: "DP",
-    gradient: "from-secondary to-primary",
   },
 ];
 
@@ -48,42 +39,42 @@ const Testimonials = () => {
           </TextReveal>
           <TextReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">Client Success Stories</span>
+              <span className="text-gradient">What Clients Say</span>
             </h2>
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              What clients say about working with AI-powered development
+              Feedback from people I've worked with
             </p>
           </TextReveal>
         </FadeInUp>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <FadeInScale key={index} delay={index * 0.15}>
               <NeonCard
-                className="p-6 h-full flex flex-col"
-                variant={index === 0 ? "primary" : index === 1 ? "accent" : "secondary"}
+                className="p-8 h-full flex flex-col"
+                variant={index === 0 ? "primary" : "accent"}
               >
                 {/* Quote Icon */}
                 <motion.div
-                  className="mb-4"
+                  className="mb-6"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + index * 0.1, type: "spring" }}
                 >
-                  <Quote className="w-8 h-8 text-primary/40" />
+                  <Quote className="w-10 h-10 text-primary/40" />
                 </motion.div>
 
                 {/* Content */}
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-muted-foreground text-base leading-relaxed mb-8 flex-grow">
                   "{testimonial.content}"
                 </p>
 
                 {/* Rating */}
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-1 mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <motion.div
                       key={i}
@@ -92,25 +83,25 @@ const Testimonials = () => {
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 + i * 0.05 }}
                     >
-                      <Star className="w-4 h-4 fill-primary text-primary" />
+                      <Star className="w-5 h-5 fill-primary text-primary" />
                     </motion.div>
                   ))}
                 </div>
 
                 {/* Author */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <div
-                    className={`w-12 h-12 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center`}
+                    className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center`}
                   >
                     <span className="text-sm font-mono font-bold text-background">
                       {testimonial.avatar}
                     </span>
                   </div>
                   <div>
-                    <p className="font-mono font-semibold text-foreground text-sm">
+                    <p className="font-mono font-semibold text-foreground">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       {testimonial.role}
                     </p>
                   </div>
@@ -119,6 +110,19 @@ const Testimonials = () => {
             </FadeInScale>
           ))}
         </div>
+
+        {/* Note */}
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <p className="text-sm text-muted-foreground font-mono">
+            More reviews coming as I work with more clients
+          </p>
+        </motion.div>
       </div>
     </section>
   );
