@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Rocket } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
 import { useState, useEffect } from "react";
 
-const taglines = ["AI-Powered", "Lightning Fast", "Future-Ready", "Innovative", "Cutting-Edge"];
+const taglines = ["No-Code", "AI-Powered", "Lightning Fast", "Production-Ready", "Scalable"];
 
 const Hero = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
@@ -15,6 +15,7 @@ const Hero = () => {
     }, 2500);
     return () => clearInterval(interval);
   }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[hsl(0_0%_2%)]">
       {/* Background Image with Overlay */}
@@ -62,12 +63,12 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-mono text-primary">AI-Powered Development</span>
+            <span className="text-sm font-mono text-primary">No-Code & AI Web App Developer</span>
           </motion.div>
 
           {/* Main Headline */}
           <motion.h1 
-            className="font-mono text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+            className="font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
@@ -78,27 +79,9 @@ const Hero = () => {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Building the{" "}
+              I build{" "}
             </motion.span>
-            <br />
-            <motion.span 
-              className="text-gradient inline-block"
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              Future of the Web
-            </motion.span>
-            <br />
-            <motion.span 
-              className="text-foreground inline-block"
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
-              That's{" "}
-            </motion.span>
-            <span className="relative inline-block min-w-[200px] md:min-w-[320px]">
+            <span className="relative inline-block min-w-[140px] sm:min-w-[180px] md:min-w-[240px]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentTagline}
@@ -118,17 +101,26 @@ const Hero = () => {
                 transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
               />
             </span>
+            <br />
+            <motion.span 
+              className="text-gradient inline-block"
+              initial={{ opacity: 0, filter: "blur(10px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              web apps & modern websites
+            </motion.span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 0.9, duration: 0.6 }}
           >
-            I leverage cutting-edge AI models to deliver high-quality, fully functional 
-            websites in record time. Transform your vision into reality with next-gen development.
+            I help startups and individuals turn ideas into fast, scalable, and live products 
+            using no-code platforms and AI tools. From concept to deployment.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -140,26 +132,27 @@ const Hero = () => {
           >
             <Button variant="hero" size="xl" className="group" asChild>
               <a href="#contact">
-                Start Your AI-Powered Project
+                <Rocket className="w-5 h-5" />
+                Hire Me
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
             <Button variant="outline-glow" size="lg" asChild>
-              <a href="#projects">View My Work</a>
+              <a href="#projects">View Projects</a>
             </Button>
           </motion.div>
 
           {/* Stats Row */}
           <motion.div
-            className="flex flex-wrap justify-center gap-8 mt-16"
+            className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.3, duration: 0.6 }}
           >
             {[
-              { value: "2x", label: "Faster Delivery" },
-              { value: "100%", label: "Custom Code" },
+              { value: "No-Code", label: "Development" },
               { value: "AI", label: "Powered" },
+              { value: "Live", label: "Deployment" },
             ].map((stat, index) => (
               <motion.div 
                 key={index} 
@@ -168,10 +161,10 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4 + index * 0.1 }}
               >
-                <div className="text-3xl md:text-4xl font-mono font-bold text-primary">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-mono font-bold text-primary">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground font-mono">
+                <div className="text-xs sm:text-sm text-muted-foreground font-mono">
                   {stat.label}
                 </div>
               </motion.div>

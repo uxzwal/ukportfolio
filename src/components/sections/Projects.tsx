@@ -1,76 +1,39 @@
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { ExternalLink, Bot, FileText, Sparkles } from "lucide-react";
 import { FadeInUp, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
+import { Button } from "@/components/ui/button";
 
-const clientProjects = [
+const projects = [
   {
-    title: "RP Bill",
-    subtitle: "Live Project",
+    title: "Kontentai – AI Content Platform",
     description:
-      "A comprehensive billing and invoicing solution designed for businesses. Features automated bill generation, payment tracking, and detailed financial reports with a clean, intuitive interface.",
-    tags: ["React", "Billing System", "Dashboard"],
-    type: "client",
+      "An AI-powered content platform built using no-code tools with authentication and a clean UI. Leverages cutting-edge AI for automated content creation.",
+    tags: ["AI-Powered", "No-Code", "Authentication"],
+    link: "https://kontentai.lovable.app/auth",
+    icon: Bot,
     gradient: "from-primary/20 to-accent/20",
-    link: "https://rpbill.netlify.app",
+    color: "primary",
   },
   {
-    title: "Invoice Bill",
-    subtitle: "Live Project",
+    title: "RP Bill – Billing Web App",
     description:
-      "Advanced invoice management platform with real-time dashboard, automated invoicing workflows, and comprehensive business analytics for seamless financial operations.",
-    tags: ["Full Stack", "Invoicing", "Analytics"],
-    type: "client",
+      "A simple and responsive billing web application deployed live using Netlify. Clean interface for managing bills and invoices efficiently.",
+    tags: ["No-Code", "Billing", "Netlify Deploy"],
+    link: "https://rpbill.netlify.app/",
+    icon: FileText,
     gradient: "from-accent/20 to-secondary/20",
-    link: "https://invoicebill.netlify.app/dashboard",
+    color: "accent",
   },
   {
-    title: "Kontent AI",
-    subtitle: "AI-Powered Project",
+    title: "Invoice Bill Generator",
     description:
-      "An innovative AI content generation platform built with Lovable. Leverages cutting-edge AI models for automated content creation, making content marketing effortless and efficient.",
-    tags: ["AI/ML", "Content Generation", "Lovable"],
-    type: "client",
+      "A lightweight invoice generation web app with a clean frontend UI. Perfect for freelancers and small businesses to create professional invoices.",
+    tags: ["Frontend UI", "Invoice Tool", "Netlify Deploy"],
+    link: "https://invoicebill.netlify.app/",
+    icon: Sparkles,
     gradient: "from-secondary/20 to-primary/20",
-    link: "https://kontentai.lovable.app",
-  },
-];
-
-const conceptProjects = [
-  {
-    title: "Neural Portfolio",
-    description:
-      "An adaptive portfolio template that learns from visitor behavior to highlight the most relevant work. Built with ML-driven personalization.",
-    tags: ["AI/ML", "Personalization", "React"],
-    gradient: "from-secondary/20 to-primary/20",
-  },
-  {
-    title: "CodeMind IDE",
-    description:
-      "A concept web-based IDE with AI pair programming capabilities. Features intelligent code completion, bug detection, and automated documentation.",
-    tags: ["Developer Tools", "AI Assistant", "TypeScript"],
-    gradient: "from-primary/20 to-secondary/20",
-  },
-  {
-    title: "Quantum Commerce",
-    description:
-      "Next-generation e-commerce prototype with predictive inventory, AI pricing optimization, and automated customer service integration.",
-    tags: ["E-commerce", "Predictive AI", "Full Stack"],
-    gradient: "from-accent/20 to-primary/20",
-  },
-  {
-    title: "HealthSync Dashboard",
-    description:
-      "Medical data visualization platform concept. Uses AI to detect patterns in health metrics and generate actionable insights for practitioners.",
-    tags: ["Healthcare", "Data Viz", "AI Insights"],
-    gradient: "from-secondary/20 to-accent/20",
-  },
-  {
-    title: "EduFlow LMS",
-    description:
-      "Learning management system with AI-generated quizzes, personalized learning paths, and intelligent progress tracking for students.",
-    tags: ["EdTech", "AI Tutor", "React"],
-    gradient: "from-primary/20 to-accent/20",
+    color: "secondary",
   },
 ];
 
@@ -89,138 +52,50 @@ const Projects = () => {
           </TextReveal>
           <TextReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">Proof of Work</span>
+              <span className="text-gradient">My Projects</span>
             </h2>
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Real client successes and innovative concept projects showcasing
-              the power of AI-driven development.
+              Real projects built with no-code platforms and AI tools.
+              Each one is live and deployed.
             </p>
           </TextReveal>
         </FadeInUp>
 
-        {/* Client Projects */}
-        <div className="mb-16">
-          <motion.h3
-            className="text-xl font-mono font-semibold mb-8 flex items-center gap-2"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Sparkles className="w-5 h-5 text-primary" />
-            Client Case Studies
-          </motion.h3>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {clientProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 60, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: index * 0.2 }}
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
+            >
+              <NeonCard 
+                className="p-6 h-full transition-all duration-500 hover:-translate-y-3 group" 
+                variant={project.color as "primary" | "accent" | "secondary"}
               >
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full"
+                {/* Gradient Header with Icon */}
+                <div
+                  className={`h-32 rounded-lg mb-6 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30 group-hover:scale-105 transition-transform duration-500`}
                 >
-                  <NeonCard className="p-6 h-full transition-all duration-500 hover:-translate-y-2 cursor-pointer group" variant="primary">
-                    {/* Gradient Header */}
-                    <div
-                      className={`h-32 rounded-lg mb-6 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30 group-hover:scale-105 transition-transform duration-500`}
-                    >
-                      <span className="text-2xl font-mono font-bold text-foreground/80">
-                        {project.title.split(" ").map((w) => w[0]).join("")}
-                      </span>
-                    </div>
+                  <project.icon className="w-12 h-12 text-foreground/60" />
+                </div>
 
-                    {/* Content */}
-                    <div className="space-y-4">
-                      <div>
-                        <span className="text-xs font-mono text-accent uppercase tracking-wider">
-                          {project.subtitle}
-                        </span>
-                        <h4 className="text-xl font-mono font-bold text-foreground group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h4>
-                      </div>
-
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="pt-2 flex items-center gap-2 text-primary text-sm font-mono opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span>View Project</span>
-                        <motion.span
-                          animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          →
-                        </motion.span>
-                      </div>
-                    </div>
-                  </NeonCard>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Concept Projects */}
-        <div>
-          <motion.h3
-            className="text-xl font-mono font-semibold mb-8 flex items-center gap-2"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Sparkles className="w-5 h-5 text-accent" />
-            Concept Projects & Prototypes
-          </motion.h3>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {conceptProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <NeonCard 
-                  className="p-6 h-full transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_hsl(150_100%_45%_/_0.15)]"
-                  variant="accent"
-                >
-                  {/* Mini Header */}
-                  <div
-                    className={`h-20 rounded-lg mb-4 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30`}
-                  >
-                    <span className="text-lg font-mono font-bold text-foreground/60">
-                      {project.title.split(" ").map((w) => w[0]).join("")}
+                {/* Content */}
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-xs font-mono text-accent uppercase tracking-wider">
+                      Live Project
                     </span>
+                    <h4 className="text-xl font-mono font-bold text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h4>
                   </div>
 
-                  <h4 className="text-lg font-mono font-bold text-foreground mb-2">
-                    {project.title}
-                  </h4>
-
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {project.description}
                   </p>
 
@@ -228,17 +103,48 @@ const Projects = () => {
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
-                        className="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/30"
+                        className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                </NeonCard>
-              </motion.div>
-            ))}
-          </div>
+
+                  {/* Live Demo Button */}
+                  <div className="pt-4">
+                    <Button variant="outline-glow" size="sm" asChild className="w-full">
+                      <a 
+                        href={project.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="gap-2"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </NeonCard>
+            </motion.div>
+          ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <p className="text-muted-foreground mb-4">Want something similar for your business?</p>
+          <Button variant="hero" size="lg" asChild>
+            <a href="#contact">
+              Let's Build Together
+            </a>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
