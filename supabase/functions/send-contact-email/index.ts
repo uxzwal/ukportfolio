@@ -3,11 +3,24 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-};
+// Allowed origins for CORS - restrict to your actual domains
+const ALLOWED_ORIGINS = [
+  "https://ukportfolio.lovable.app",
+  "https://id-preview--8efc2afd-1225-4262-88bb-aef5fcad6ddd.lovable.app",
+  "http://localhost:8080",
+  "http://localhost:5173",
+];
+
+function getCorsHeaders(req: Request): Record<string, string> {
+  const origin = req.headers.get("origin") || "";
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
+}
 
 // Validation constants
 const MAX_NAME_LENGTH = 100;
@@ -66,6 +79,8 @@ function checkRateLimit(clientIp: string): boolean {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  const corsHeaders = getCorsHeaders(req);
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
