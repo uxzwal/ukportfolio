@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
+import { PERSONAL_INFO } from "@/lib/constants";
 
 const navLinks = [
-  { name: "Services", href: "#services" },
+  { name: "Roadmap", href: "#roadmap" },
   { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "Philosophy", href: "#philosophy" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
@@ -40,16 +42,21 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="#" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/50 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-                <Sparkles className="w-4 h-4 text-primary" />
+              <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/50 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                <Terminal className="w-5 h-5 text-primary" />
               </div>
-              <span className="font-mono font-bold text-lg text-foreground">
-                Ujjwal
-              </span>
+              <div className="hidden sm:block">
+                <span className="font-mono font-bold text-lg text-foreground block leading-tight">
+                  {PERSONAL_INFO.name.split(" ")[0]}
+                </span>
+                <span className="text-xs text-muted-foreground font-mono">
+                  DevOps Learner
+                </span>
+              </div>
             </a>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -62,24 +69,28 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
-              <Button variant="outline-glow" size="sm" asChild>
-                <a href="#contact">Get in Touch</a>
-              </Button>
-            </div>
+            {/* Right Side */}
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              
+              <div className="hidden md:block">
+                <Button variant="outline-glow" size="sm" asChild>
+                  <a href="#contact">Get in Touch</a>
+                </Button>
+              </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-muted/50 border border-border/50"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-foreground" />
-              ) : (
-                <Menu className="w-5 h-5 text-foreground" />
-              )}
-            </button>
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-muted/50 border border-border/50"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5 text-foreground" />
+                ) : (
+                  <Menu className="w-5 h-5 text-foreground" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -98,7 +109,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
-              className="absolute top-20 left-4 right-4 glass-card p-6"
+              className="absolute top-20 left-4 right-4 glass-card p-6 border border-border/50 rounded-xl"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -122,7 +133,7 @@ const Navbar = () => {
                     href="#contact"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Start Your Project
+                    Contact Me
                   </a>
                 </Button>
               </div>

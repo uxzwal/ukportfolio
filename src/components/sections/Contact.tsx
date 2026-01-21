@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Github, Send, ArrowRight, Rocket } from "lucide-react";
+import { Mail, Send, Terminal, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
+import SocialIcon3D from "@/components/SocialIcon3D";
 import { supabase } from "@/integrations/supabase/client";
+import { SOCIAL_LINKS, PERSONAL_INFO } from "@/lib/constants";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,8 +34,8 @@ const Contact = () => {
       if (error) throw error;
 
       toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you soon!",
+        title: "Message Sent! 🚀",
+        description: "Thanks for reaching out. I'll get back to you soon!",
       });
 
       setFormData({ name: "", email: "", message: "" });
@@ -41,7 +43,7 @@ const Contact = () => {
       console.error("Error sending message:", error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or email directly.",
+        description: "Failed to send message. Please try email directly.",
         variant: "destructive",
       });
     } finally {
@@ -59,8 +61,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative bg-[hsl(0_0%_1%)]">
-      <div className="absolute inset-0 grid-pattern opacity-5" />
+    <section id="contact" className="section-padding relative bg-background">
+      <div className="absolute inset-0 grid-pattern opacity-10" />
 
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
@@ -72,13 +74,13 @@ const Contact = () => {
           </TextReveal>
           <TextReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">Have an idea? Let's build it.</span>
+              <span className="text-gradient">Let's Connect</span>
             </h2>
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Ready to turn your vision into a live product?
-              Reach out and let's discuss your project.
+              Looking for internships, entry-level DevOps roles, or just want to connect?
+              I'd love to hear from you.
             </p>
           </TextReveal>
         </FadeInUp>
@@ -86,108 +88,78 @@ const Contact = () => {
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Info */}
           <SlideInLeft>
-            <NeonCard className="p-8" variant="primary">
-              <h3 className="text-xl font-mono font-bold mb-6 text-foreground">
-                Get in Touch
-              </h3>
-
-              <div className="space-y-4">
-                {/* Email */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-primary/50 hover:shadow-[0_0_20px_hsl(200_100%_50%_/_0.1)]"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                      Email
-                    </p>
-                    <a
-                      href="mailto:iamkashyup@gmail.com"
-                      className="text-foreground hover:text-primary transition-colors font-mono text-sm"
-                    >
-                      iamkashyup@gmail.com
-                    </a>
-                  </div>
-                </motion.div>
-
-                {/* GitHub */}
-                <motion.a
-                  href="https://github.com/Youjjwal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.15 }}
-                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-foreground/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] cursor-pointer group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center group-hover:bg-foreground/20 transition-colors">
-                    <Github className="w-5 h-5 text-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                      GitHub
-                    </p>
-                    <span className="text-foreground group-hover:text-primary transition-colors font-mono text-sm">
-                      @Youjjwal
-                    </span>
-                  </div>
-                </motion.a>
-
-                {/* LinkedIn */}
-                <motion.a
-                  href="https://linkedin.com/in/youjjwal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="flex items-center gap-4 p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 transition-all hover:border-[#0A66C2]/50 hover:shadow-[0_0_20px_rgba(10,102,194,0.2)] cursor-pointer group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-[#0A66C2]/20 flex items-center justify-center group-hover:bg-[#0A66C2]/30 transition-colors">
-                    <Linkedin className="w-5 h-5 text-[#0A66C2]" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                      LinkedIn
-                    </p>
-                    <span className="text-foreground group-hover:text-[#0A66C2] transition-colors font-mono text-sm">
-                      Ujjwal Kashyup
-                    </span>
-                  </div>
-                </motion.a>
+            <NeonCard className="p-8 h-full" variant="primary">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
+                  <Terminal className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-mono font-bold text-foreground">
+                    Get in Touch
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Available for opportunities
+                  </p>
+                </div>
               </div>
 
-              {/* CTA */}
+              {/* Email Card */}
+              <motion.a
+                href={`mailto:${SOCIAL_LINKS.email}`}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="flex items-center gap-4 p-4 rounded-lg bg-card border border-border/30 transition-all hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)_/_0.1)] cursor-pointer group mb-6"
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
+                    Email
+                  </p>
+                  <span className="text-foreground group-hover:text-primary transition-colors font-mono">
+                    {SOCIAL_LINKS.email}
+                  </span>
+                </div>
+              </motion.a>
+
+              {/* Social Links */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="mb-8"
+              >
+                <p className="text-sm text-muted-foreground font-mono mb-4">Connect on socials:</p>
+                <div className="flex flex-wrap gap-3">
+                  <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} />
+                  <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} />
+                  <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} />
+                  <SocialIcon3D platform="telegram" href={SOCIAL_LINKS.telegram} />
+                  <SocialIcon3D platform="discord" href={SOCIAL_LINKS.discord} />
+                </div>
+              </motion.div>
+
+              {/* Status Card */}
               <motion.div 
-                className="mt-8 p-6 rounded-lg bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20"
+                className="p-5 rounded-lg bg-gradient-to-br from-green-500/10 to-accent/5 border border-green-500/20"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <Rocket className="w-5 h-5 text-primary" />
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                   <h4 className="font-mono font-semibold text-foreground">
-                    Ready to Start?
+                    Open to Opportunities
                   </h4>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Let's discuss your project and bring your idea to life.
+                <p className="text-sm text-muted-foreground">
+                  Currently seeking internships and entry-level DevOps/Cloud Engineer positions.
                 </p>
-                <Button variant="hero" size="lg" className="w-full" asChild>
-                  <a href="mailto:iamkashyup@gmail.com">
-                    Hire Me
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
-                </Button>
               </motion.div>
             </NeonCard>
           </SlideInLeft>
@@ -195,93 +167,98 @@ const Contact = () => {
           {/* Contact Form */}
           <SlideInRight delay={0.2}>
             <NeonCard className="p-8" variant="accent">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <h3 className="text-xl font-mono font-bold mb-2 text-foreground">
-                  Send a Message
-                </h3>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Fill out the form below and I'll respond within 24 hours.
-                </p>
-
-                <div className="space-y-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-mono text-muted-foreground mb-2"
-                    >
-                      Name
-                    </label>
-                    <div className="relative neon-input rounded-lg">
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
-                        placeholder="Your name"
-                      />
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-mono text-muted-foreground mb-2"
-                    >
-                      Email
-                    </label>
-                    <div className="relative neon-input rounded-lg">
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-mono text-muted-foreground mb-2"
-                    >
-                      Message
-                    </label>
-                    <div className="relative neon-input rounded-lg">
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm resize-none relative z-10"
-                        placeholder="Tell me about your project..."
-                      />
-                    </div>
-                  </motion.div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-accent/10 border border-accent/30 flex items-center justify-center">
+                  <MessageSquare className="w-6 h-6 text-accent" />
                 </div>
+                <div>
+                  <h3 className="text-xl font-mono font-bold text-foreground">
+                    Send a Message
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    I'll respond within 24 hours
+                  </p>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-mono text-muted-foreground mb-2"
+                  >
+                    Name
+                  </label>
+                  <div className="relative neon-input rounded-lg">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
+                      placeholder="Your name"
+                    />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-mono text-muted-foreground mb-2"
+                  >
+                    Email
+                  </label>
+                  <div className="relative neon-input rounded-lg">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-mono text-muted-foreground mb-2"
+                  >
+                    Message
+                  </label>
+                  <div className="relative neon-input rounded-lg">
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm resize-none relative z-10"
+                      placeholder="Tell me about the opportunity..."
+                    />
+                  </div>
+                </motion.div>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
