@@ -9,41 +9,91 @@ import SocialIcon3D from "@/components/SocialIcon3D";
 import { supabase } from "@/integrations/supabase/client";
 import { SOCIAL_LINKS, PERSONAL_INFO } from "@/lib/constants";
 
+// Validation constants (matching server-side)
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 255;
+const MAX_MESSAGE_LENGTH = 2000;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    website: "", // Honeypot field
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
+  // Client-side validation
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    // Validate name
+    const trimmedName = formData.name.trim();
+    if (!trimmedName) {
+      newErrors.name = "Name is required";
+    } else if (trimmedName.length > MAX_NAME_LENGTH) {
+      newErrors.name = `Name must be less than ${MAX_NAME_LENGTH} characters`;
+    }
+
+    // Validate email
+    const trimmedEmail = formData.email.trim();
+    if (!trimmedEmail) {
+      newErrors.email = "Email is required";
+    } else if (trimmedEmail.length > MAX_EMAIL_LENGTH) {
+      newErrors.email = `Email must be less than ${MAX_EMAIL_LENGTH} characters`;
+    } else if (!EMAIL_REGEX.test(trimmedEmail)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Validate message
+    const trimmedMessage = formData.message.trim();
+    if (!trimmedMessage) {
+      newErrors.message = "Message is required";
+    } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+      newErrors.message = `Message must be less than ${MAX_MESSAGE_LENGTH} characters`;
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Run client-side validation first
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
+          name: formData.name.trim(),
+          email: formData.email.trim().toLowerCase(),
+          message: formData.message.trim(),
+          website: formData.website, // Honeypot
         },
       });
 
       if (error) throw error;
 
       toast({
-        title: "Message Sent! 🚀",
+        title: "Message Sent!",
         description: "Thanks for reaching out. I'll get back to you soon!",
       });
 
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", website: "" });
+      setErrors({});
     } catch (error: any) {
       console.error("Error sending message:", error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try email directly.",
+        description: error.message || "Failed to send message. Please try email directly.",
         variant: "destructive",
       });
     } finally {
@@ -54,10 +104,15 @@ const Contact = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   return (
@@ -186,6 +241,20 @@ const Contact = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field - hidden from users, catches bots */}
+                <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -196,20 +265,24 @@ const Contact = () => {
                     htmlFor="name"
                     className="block text-sm font-mono text-muted-foreground mb-2"
                   >
-                    Name
+                    Name <span className="text-xs text-muted-foreground/60">({formData.name.length}/{MAX_NAME_LENGTH})</span>
                   </label>
-                  <div className="relative neon-input rounded-lg">
+                  <div className={`relative neon-input rounded-lg ${errors.name ? 'border-destructive' : ''}`}>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      maxLength={MAX_NAME_LENGTH}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
                       placeholder="Your name"
                     />
                   </div>
+                  {errors.name && (
+                    <p className="text-destructive text-xs mt-1 font-mono">{errors.name}</p>
+                  )}
                 </motion.div>
 
                 <motion.div
@@ -224,18 +297,22 @@ const Contact = () => {
                   >
                     Email
                   </label>
-                  <div className="relative neon-input rounded-lg">
+                  <div className={`relative neon-input rounded-lg ${errors.email ? 'border-destructive' : ''}`}>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      maxLength={MAX_EMAIL_LENGTH}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
                       placeholder="your@email.com"
                     />
                   </div>
+                  {errors.email && (
+                    <p className="text-destructive text-xs mt-1 font-mono">{errors.email}</p>
+                  )}
                 </motion.div>
 
                 <motion.div
@@ -248,20 +325,24 @@ const Contact = () => {
                     htmlFor="message"
                     className="block text-sm font-mono text-muted-foreground mb-2"
                   >
-                    Message
+                    Message <span className="text-xs text-muted-foreground/60">({formData.message.length}/{MAX_MESSAGE_LENGTH})</span>
                   </label>
-                  <div className="relative neon-input rounded-lg">
+                  <div className={`relative neon-input rounded-lg ${errors.message ? 'border-destructive' : ''}`}>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
+                      maxLength={MAX_MESSAGE_LENGTH}
                       required
                       rows={4}
                       className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm resize-none relative z-10"
                       placeholder="Tell me about the opportunity..."
                     />
                   </div>
+                  {errors.message && (
+                    <p className="text-destructive text-xs mt-1 font-mono">{errors.message}</p>
+                  )}
                 </motion.div>
 
                 <motion.div
