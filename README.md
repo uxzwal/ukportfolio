@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
+# 🚀 My Professional Portfolio
 
-## Project info
+Welcome to the repository of my personal portfolio website. This project showcases my skills, projects, and experience as a **Full-Stack / Frontend Developer**.
 
-**URL**: https://uzwal.netlify.app
+**Live Demo:** [uzwal.netlify.app](https://uzwal.netlify.app)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+* **⚡ Modern UI/UX:** Clean, minimalist, and professional design.
+* **📱 Fully Responsive:** Optimized for all screen sizes (Mobile, Tablet, Desktop).
+* **🎨 Smooth Animations:** Powered by Framer Motion for an interactive user experience.
+* **📩 Contact Form:** Integrated functionality for users to reach out directly.
+* **🌑 Dark/Light Mode:** (Optional: include if your site supports it).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🛠️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+| Category | Technology |
+| --- | --- |
+| **Frontend** | React.js, Vite |
+| **Styling** | Tailwind CSS |
+| **Animations** | Framer Motion |
+| **Icons** | Lucide React / React Icons |
+| **Deployment** | Netlify |
 
-**Use your preferred IDE**
+## 📂 Project Structure
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```text
+├── public/          # Static assets
+├── src/
+│   ├── components/  # Reusable UI components (Navbar, Hero, Projects, etc.)
+│   ├── assets/      # Images and icons
+│   ├── App.jsx      # Main application entry
+│   └── main.jsx     # Vite entry point
+├── tailwind.config.js
+└── package.json
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🚀 Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To get a local copy up and running, follow these steps:
 
-**Use GitHub Codespaces**
+1. **Clone the repository**
+```bash
+git clone https://github.com/Youjjwal/ukportfolio.git
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
 
-## What technologies are used for this project?
 
-This project is built with:
+2. **Install dependencies**
+```bash
+npm install
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+3. **Run the development server**
+```bash
+npm run dev
 
-## Can I connect a custom domain to my Lovable project?
+```
 
-Yes, you can!
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+4. **Build for production**
+```bash
+npm run build
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+
+
+
+## 🤝 Contact
+
+**Ujjwal Kumar**
+
+* **Email:** [iamkashyup@gmail.com]
+* **LinkedIn:** [linkedin.com/in/Youjjwal](https://www.google.com/search?q=https://linkedin.com/in/Youjjwal)
+* **Portfolio:** [uzwal.netlify.app](https://uzwal.netlify.app)
+
+---
+
+⭐️ *If you like this project, feel free to give it a star!*
+
+---
