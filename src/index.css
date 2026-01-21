@@ -6,53 +6,104 @@
 
 @layer base {
   :root {
-    /* Solid Dark Black Theme */
-    --background: 0 0% 2%;
-    --foreground: 210 40% 95%;
+    /* Light Mode - Clean DevOps Theme */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
 
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 0 0% 4%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Electric Blue */
-    --primary: 200 100% 50%;
-    --primary-foreground: 0 0% 2%;
+    /* DevOps Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Neon Green */
-    --accent: 150 100% 45%;
-    --accent-foreground: 0 0% 2%;
+    /* Kubernetes Purple */
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Purple Accent */
-    --secondary: 270 80% 60%;
-    --secondary-foreground: 210 40% 95%;
+    /* Docker Blue */
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 8%;
-    --muted-foreground: 215 20% 55%;
+    /* AWS Orange */
+    --warning: 32 95% 44%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Terraform Purple */
+    --terraform: 271 76% 53%;
+    --terraform-foreground: 0 0% 100%;
+
+    /* Jenkins Red */
+    --jenkins: 0 72% 51%;
+    --jenkins-foreground: 0 0% 100%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* DevOps Glows */
+    --glow-primary: 0 0 40px hsl(217 91% 60% / 0.3);
+    --glow-accent: 0 0 40px hsl(262 83% 58% / 0.3);
+    --glow-secondary: 0 0 40px hsl(199 89% 48% / 0.3);
+    --glow-warning: 0 0 40px hsl(32 95% 44% / 0.3);
+    
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%), hsl(199 89% 48%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-border: linear-gradient(135deg, hsl(217 91% 60% / 0.4), hsl(262 83% 58% / 0.3), hsl(199 89% 48% / 0.4));
+  }
+
+  .dark {
+    /* Dark Mode - DevOps Terminal Theme */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    /* DevOps Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+
+    /* Kubernetes Purple */
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Docker Blue */
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 222 47% 6%;
+
+    --muted: 222 47% 12%;
+    --muted-foreground: 215 20% 65%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 12%;
-    --input: 0 0% 8%;
-    --ring: 200 100% 50%;
+    --border: 222 47% 15%;
+    --input: 222 47% 12%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
-
-    /* Custom Design Tokens */
-    --glow-primary: 0 0 30px hsl(200 100% 50% / 0.5);
-    --glow-accent: 0 0 30px hsl(150 100% 45% / 0.5);
-    --glow-secondary: 0 0 30px hsl(270 80% 60% / 0.4);
+    --glow-primary: 0 0 50px hsl(217 91% 60% / 0.4);
+    --glow-accent: 0 0 50px hsl(262 83% 58% / 0.4);
+    --glow-secondary: 0 0 50px hsl(199 89% 48% / 0.4);
+    --glow-warning: 0 0 50px hsl(32 95% 44% / 0.4);
     
-    --gradient-hero: linear-gradient(135deg, hsl(200 100% 50%), hsl(150 100% 45%), hsl(270 80% 60%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 6%), hsl(0 0% 3%));
-    --gradient-border: linear-gradient(135deg, hsl(200 100% 50% / 0.5), hsl(150 100% 45% / 0.3), hsl(270 80% 60% / 0.4));
-  }
-
-  .dark {
-    --background: 0 0% 2%;
-    --foreground: 210 40% 95%;
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%), hsl(199 89% 48%));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 10%), hsl(222 47% 6%));
+    --gradient-border: linear-gradient(135deg, hsl(217 91% 60% / 0.5), hsl(262 83% 58% / 0.4), hsl(199 89% 48% / 0.5));
   }
 }
 
@@ -76,27 +127,63 @@
 }
 
 @layer components {
-  /* Glowing Button Styles */
-  .btn-glow-primary {
-    @apply relative overflow-hidden bg-primary text-primary-foreground font-mono font-semibold;
+  /* DevOps Terminal Card */
+  .terminal-card {
+    @apply relative bg-card border border-border rounded-xl overflow-hidden;
+    background: var(--gradient-card);
+  }
+
+  .terminal-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-8 bg-muted flex items-center px-4;
+  }
+
+  /* 3D Tool Card */
+  .tool-card-3d {
+    @apply relative bg-card border border-border rounded-2xl p-6;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+      0 10px 30px -10px hsl(var(--border) / 0.5),
+      0 20px 40px -20px hsl(var(--primary) / 0.1);
+  }
+
+  .tool-card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 
+      0 20px 40px -10px hsl(var(--border) / 0.6),
+      0 30px 60px -20px hsl(var(--primary) / 0.3);
+  }
+
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+
+  .dark .glass-card {
+    @apply bg-card/60;
+  }
+
+  /* Glowing Button */
+  .btn-glow {
+    @apply relative overflow-hidden font-mono font-semibold transition-all duration-300;
+  }
+
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: var(--gradient-hero);
+    filter: blur(20px);
+    z-index: -1;
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-50;
+  }
+
+  .btn-glow:hover {
+    transform: translateY(-2px);
     box-shadow: var(--glow-primary);
-    transition: all 0.3s ease;
-  }
-
-  .btn-glow-primary:hover {
-    box-shadow: 0 0 50px hsl(200 100% 50% / 0.7), 0 0 100px hsl(200 100% 50% / 0.3);
-    transform: translateY(-2px);
-  }
-
-  .btn-glow-accent {
-    @apply relative overflow-hidden bg-accent text-accent-foreground font-mono font-semibold;
-    box-shadow: var(--glow-accent);
-    transition: all 0.3s ease;
-  }
-
-  .btn-glow-accent:hover {
-    box-shadow: 0 0 50px hsl(150 100% 45% / 0.7), 0 0 100px hsl(150 100% 45% / 0.3);
-    transform: translateY(-2px);
   }
 
   /* Gradient Text */
@@ -107,57 +194,54 @@
     background-clip: text;
   }
 
-  /* Glass Card */
-  .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
-    background: var(--gradient-card);
+  /* Timeline Styles */
+  .timeline-line {
+    @apply absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--primary)),
+      hsl(var(--accent)),
+      hsl(var(--secondary)),
+      hsl(var(--primary))
+    );
   }
 
-  /* Glowing Border */
-  .glow-border {
-    @apply relative;
-  }
-
-  .glow-border::before {
-    content: '';
-    @apply absolute -inset-[1px] rounded-xl opacity-50;
-    background: var(--gradient-border);
-    z-index: -1;
-    filter: blur(8px);
-  }
-
-  /* Animated Grid Background */
-  .grid-pattern {
-    background-image: 
-      linear-gradient(to right, hsl(220 15% 15% / 0.3) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(220 15% 15% / 0.3) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .timeline-node {
+    @apply relative z-10 w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-lg;
+    background: var(--gradient-hero);
+    box-shadow: var(--glow-primary);
   }
 
   /* Section Styling */
   .section-padding {
-    @apply py-20 md:py-32 px-4 md:px-8;
+    @apply py-20 md:py-28 px-4 md:px-8;
   }
 
-  /* Tech Badge */
-  .tech-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 font-mono text-sm;
-    transition: all 0.3s ease;
+  /* Skill Badge */
+  .skill-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border font-mono text-sm transition-all duration-300;
   }
 
-  .tech-badge:hover {
-    @apply border-primary/50;
+  .skill-badge:hover {
+    @apply border-primary bg-primary/10;
     box-shadow: var(--glow-primary);
   }
 
-  /* Project Card Hover */
-  .project-card {
-    @apply glass-card p-6 transition-all duration-500;
+  /* Learning Progress Bar */
+  .progress-bar {
+    @apply relative h-2 bg-muted rounded-full overflow-hidden;
   }
 
-  .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--glow-primary);
+  .progress-bar::after {
+    content: '';
+    @apply absolute inset-y-0 left-0 rounded-full;
+    background: var(--gradient-hero);
+    animation: progressPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes progressPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 
   /* Floating Animation */
@@ -167,23 +251,61 @@
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-15px); }
   }
 
-  /* Pulse Glow */
-  .pulse-glow {
-    animation: pulseGlow 2s ease-in-out infinite;
+  /* Glow Pulse */
+  .glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
   }
 
-  @keyframes pulseGlow {
+  @keyframes glowPulse {
     0%, 100% { box-shadow: var(--glow-primary); }
-    50% { box-shadow: 0 0 60px hsl(200 100% 50% / 0.8); }
+    50% { box-shadow: 0 0 80px hsl(217 91% 60% / 0.6); }
   }
 
-  /* Code typing effect */
-  .typing-cursor::after {
-    content: '|';
-    @apply text-primary animate-pulse;
+  /* Grid Pattern */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Social Icon 3D */
+  .social-icon-3d {
+    @apply relative flex items-center justify-center w-12 h-12 rounded-xl bg-muted border border-border transition-all duration-300;
+    transform-style: preserve-3d;
+  }
+
+  .social-icon-3d:hover {
+    transform: translateY(-5px) rotateX(10deg);
+    box-shadow: 
+      0 15px 30px -10px hsl(var(--border) / 0.5),
+      var(--glow-primary);
+  }
+
+  /* Cursor Glow Effect */
+  .cursor-glow {
+    @apply pointer-events-none fixed w-96 h-96 rounded-full opacity-30 blur-3xl -translate-x-1/2 -translate-y-1/2;
+    background: radial-gradient(circle, hsl(var(--primary) / 0.3), transparent 70%);
+  }
+
+  /* Level Badge */
+  .level-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase tracking-wider;
+  }
+
+  .level-badge.learning {
+    @apply bg-primary/20 text-primary border border-primary/30;
+  }
+
+  .level-badge.intermediate {
+    @apply bg-accent/20 text-accent border border-accent/30;
+  }
+
+  .level-badge.beginner {
+    @apply bg-secondary/20 text-secondary border border-secondary/30;
   }
 }
 
@@ -209,44 +331,12 @@
     @apply bg-primary/50;
   }
 
-  /* Neon Corner Highlights */
-  .neon-corners {
-    @apply relative;
-  }
-
-  .neon-corners::before,
-  .neon-corners::after {
-    content: '';
-    @apply absolute w-8 h-8 pointer-events-none;
-  }
-
-  .neon-corners::before {
-    @apply top-0 left-0;
-    background: linear-gradient(135deg, currentColor 0%, transparent 50%);
-    opacity: 0.6;
-    filter: blur(1px);
-  }
-
-  .neon-corners::after {
-    @apply bottom-0 right-0;
-    background: linear-gradient(-45deg, currentColor 0%, transparent 50%);
-    opacity: 0.6;
-    filter: blur(1px);
-  }
-
-  /* Neon input corners */
-  .neon-input {
-    @apply relative;
-    background: hsl(0 0% 3%);
-  }
-
-  .neon-input::before {
-    content: '';
-    @apply absolute -inset-[1px] rounded-lg pointer-events-none;
-    background: linear-gradient(135deg, hsl(200 100% 50% / 0.3) 0%, transparent 30%, transparent 70%, hsl(150 100% 45% / 0.3) 100%);
-  }
-
-  .neon-input:focus-within::before {
-    background: linear-gradient(135deg, hsl(200 100% 50% / 0.6) 0%, transparent 30%, transparent 70%, hsl(150 100% 45% / 0.6) 100%);
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
