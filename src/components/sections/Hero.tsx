@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Rocket } from "lucide-react";
-import heroBg from "@/assets/hero-bg.png";
+import { ArrowRight, Terminal, Cloud, GitBranch } from "lucide-react";
 import { useState, useEffect } from "react";
+import { PERSONAL_INFO } from "@/lib/constants";
 
-const taglines = ["No-Code", "AI-Powered", "Lightning Fast", "Production-Ready", "Scalable"];
+const taglines = ["Linux", "Docker", "AWS", "Kubernetes", "CI/CD", "Terraform"];
 
 const Hero = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
@@ -12,41 +12,51 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
-    }, 2500);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[hsl(0_0%_2%)]">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(0_0%_2%)]/80 via-[hsl(0_0%_2%)]/95 to-[hsl(0_0%_2%)]" />
-      </div>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+      
+      {/* Floating Terminal Elements */}
+      <motion.div
+        className="absolute top-1/4 left-[10%] hidden lg:block"
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-48 h-32 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm p-3 font-mono text-xs">
+          <div className="flex gap-1.5 mb-2">
+            <div className="w-2 h-2 rounded-full bg-red-500" />
+            <div className="w-2 h-2 rounded-full bg-yellow-500" />
+            <div className="w-2 h-2 rounded-full bg-green-500" />
+          </div>
+          <div className="text-muted-foreground">
+            <span className="text-devops-docker">$</span> docker build -t app .
+          </div>
+          <div className="text-green-400 mt-1">Successfully built ✓</div>
+        </div>
+      </motion.div>
 
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-10" />
-
-      {/* Animated Geometric Elements */}
       <motion.div
-        className="absolute top-1/4 left-10 w-32 h-32 border border-primary/20 rounded-lg rotate-45"
-        animate={{ rotate: [45, 90, 45], scale: [1, 1.1, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-10 w-24 h-24 border border-accent/20 rounded-full"
-        animate={{ y: [-20, 20, -20], opacity: [0.2, 0.5, 0.2] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-16 h-16 bg-secondary/5 rounded-lg"
-        animate={{ rotate: [0, 180, 360], scale: [1, 0.8, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      />
+        className="absolute bottom-1/3 right-[10%] hidden lg:block"
+        animate={{ y: [10, -10, 10] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-44 h-28 rounded-lg bg-card/50 border border-border/50 backdrop-blur-sm p-3 font-mono text-xs">
+          <div className="flex gap-1.5 mb-2">
+            <div className="w-2 h-2 rounded-full bg-red-500" />
+            <div className="w-2 h-2 rounded-full bg-yellow-500" />
+            <div className="w-2 h-2 rounded-full bg-green-500" />
+          </div>
+          <div className="text-muted-foreground">
+            <span className="text-devops-aws">$</span> kubectl get pods
+          </div>
+          <div className="text-devops-kubernetes mt-1">Running 3/3</div>
+        </div>
+      </motion.div>
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
@@ -62,65 +72,74 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-mono text-primary">No-Code & AI Web App Developer</span>
+            <Terminal className="w-4 h-4 text-primary" />
+            <span className="text-sm font-mono text-primary">DevOps Learning Journey</span>
           </motion.div>
+
+          {/* Name */}
+          <motion.h2
+            className="text-2xl md:text-3xl font-mono font-medium text-muted-foreground mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Hi, I'm <span className="text-foreground font-bold">{PERSONAL_INFO.name}</span>
+          </motion.h2>
 
           {/* Main Headline */}
           <motion.h1 
             className="font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <motion.span 
-              className="text-foreground inline-block"
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              I build{" "}
-            </motion.span>
-            <span className="relative inline-block min-w-[140px] sm:min-w-[180px] md:min-w-[240px]">
+            <span className="text-foreground">Aspiring </span>
+            <span className="text-gradient">DevOps Engineer</span>
+            <br />
+            <span className="text-foreground text-2xl sm:text-3xl md:text-4xl">
+              Cloud & Automation Enthusiast
+            </span>
+          </motion.h1>
+
+          {/* Animated Tech Stack */}
+          <motion.div
+            className="flex items-center justify-center gap-2 mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <span className="text-muted-foreground font-mono">Learning:</span>
+            <span className="relative inline-block min-w-[120px] h-8">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentTagline}
-                  className="text-primary inline-block"
+                  className="absolute left-0 right-0 text-primary font-mono font-bold text-xl"
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
                   {taglines[currentTagline]}
                 </motion.span>
               </AnimatePresence>
-              <motion.span
-                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-              />
             </span>
-            <br />
-            <motion.span 
-              className="text-gradient inline-block"
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              web apps & modern websites
-            </motion.span>
-          </motion.h1>
+          </motion.div>
 
           {/* Subheadline */}
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
           >
-            I help startups and individuals turn ideas into fast, scalable, and live products 
-            using no-code platforms and AI tools. From concept to deployment.
+            I am a beginner-to-intermediate DevOps learner focused on{" "}
+            <span className="text-devops-linux font-semibold">Linux</span>,{" "}
+            <span className="text-devops-aws font-semibold">Cloud</span>,{" "}
+            <span className="text-devops-docker font-semibold">Containers</span>,{" "}
+            <span className="text-devops-jenkins font-semibold">CI/CD</span>, and{" "}
+            <span className="text-devops-terraform font-semibold">Infrastructure as Code</span>.
+            <br className="hidden sm:block" />
+            I believe in building strong fundamentals instead of fake projects.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -128,40 +147,46 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.5 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
           >
             <Button variant="hero" size="xl" className="group" asChild>
-              <a href="#contact">
-                <Rocket className="w-5 h-5" />
-                Hire Me
+              <a href="#roadmap">
+                <GitBranch className="w-5 h-5" />
+                View DevOps Roadmap
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
             <Button variant="outline-glow" size="lg" asChild>
-              <a href="#projects">View Projects</a>
+              <a href="#skills">
+                <Cloud className="w-4 h-4 mr-2" />
+                Skills & Tools
+              </a>
+            </Button>
+            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-foreground" asChild>
+              <a href="#contact">Contact Me</a>
             </Button>
           </motion.div>
 
           {/* Stats Row */}
           <motion.div
-            className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-16"
+            className="flex flex-wrap justify-center gap-8 sm:gap-12 mt-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.6 }}
+            transition={{ delay: 1.1, duration: 0.6 }}
           >
             {[
-              { value: "No-Code", label: "Development" },
-              { value: "AI", label: "Powered" },
-              { value: "Live", label: "Deployment" },
+              { value: "Linux", label: "Foundation", color: "text-devops-linux" },
+              { value: "Cloud", label: "AWS Learning", color: "text-devops-aws" },
+              { value: "DevOps", label: "Journey", color: "text-devops-docker" },
             ].map((stat, index) => (
               <motion.div 
                 key={index} 
                 className="text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4 + index * 0.1 }}
+                transition={{ delay: 1.2 + index * 0.1 }}
               >
-                <div className="text-2xl sm:text-3xl md:text-4xl font-mono font-bold text-primary">
+                <div className={`text-2xl sm:text-3xl md:text-4xl font-mono font-bold ${stat.color}`}>
                   {stat.value}
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground font-mono">

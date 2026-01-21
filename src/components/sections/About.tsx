@@ -1,37 +1,44 @@
 import { motion } from "framer-motion";
-import { Bot, Palette, Rocket, Sparkles, Github, Linkedin } from "lucide-react";
+import { Terminal, BookOpen, Target, Lightbulb, GraduationCap } from "lucide-react";
 import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
-import { Button } from "@/components/ui/button";
+import SocialIcon3D from "@/components/SocialIcon3D";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 
 const About = () => {
   const highlights = [
     {
-      icon: Bot,
-      title: "AI Web Apps",
-      description: "Chatbots, dashboards & tools",
+      icon: Terminal,
+      title: "DevOps Focus",
+      description: "Linux, Containers, CI/CD",
       color: "primary",
     },
     {
-      icon: Palette,
-      title: "Frontend UI",
-      description: "Clean, responsive interfaces",
+      icon: BookOpen,
+      title: "Self-Learning",
+      description: "Documentation & hands-on labs",
       color: "accent",
     },
     {
-      icon: Rocket,
-      title: "Deployment",
-      description: "GitHub → Netlify live setup",
+      icon: Target,
+      title: "Goal",
+      description: "Entry-level DevOps role",
       color: "secondary",
     },
   ];
 
+  const strengths = [
+    { icon: Lightbulb, text: "Problem-solving mindset" },
+    { icon: BookOpen, text: "Self-learning ability" },
+    { icon: Target, text: "Consistency in learning" },
+  ];
+
   return (
-    <section id="about" className="section-padding relative bg-[hsl(0_0%_1%)]">
-      <div className="absolute inset-0 grid-pattern opacity-5" />
+    <section id="about" className="section-padding relative bg-background">
+      <div className="absolute inset-0 grid-pattern opacity-10" />
 
       <div className="container mx-auto relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <FadeInUp className="text-center mb-12">
             <TextReveal>
@@ -41,108 +48,155 @@ const About = () => {
             </TextReveal>
             <TextReveal delay={0.1}>
               <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-                <span className="text-gradient">Ujjwal Kashyup</span>
+                <span className="text-gradient">{PERSONAL_INFO.name}</span>
               </h2>
             </TextReveal>
             <TextReveal delay={0.2}>
               <p className="text-xl text-muted-foreground font-mono">
-                No-Code & AI Web App Developer
+                {PERSONAL_INFO.title}
               </p>
             </TextReveal>
           </FadeInUp>
 
-          {/* Main Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <NeonCard className="p-8 md:p-12" variant="primary">
-              {/* Bio */}
-              <SlideInRight className="mb-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <Sparkles className="w-6 h-6 text-primary" />
-                  <h3 className="text-2xl font-mono font-bold text-foreground">
-                    Hi, I'm Ujjwal
-                  </h3>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Left Column - Bio */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <NeonCard className="p-8 h-full" variant="primary">
+                <SlideInRight className="mb-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
+                      <Terminal className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-mono font-bold text-foreground">
+                        My Journey
+                      </h3>
+                      <p className="text-sm text-muted-foreground font-mono">
+                        Fundamentals First Approach
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 text-muted-foreground leading-relaxed">
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      I'm an aspiring DevOps Engineer focused on building a solid foundation in{" "}
+                      <span className="text-devops-linux font-semibold">Linux</span>,{" "}
+                      <span className="text-devops-aws font-semibold">Cloud Computing</span>, and{" "}
+                      <span className="text-devops-docker font-semibold">Container technologies</span>.
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      My learning philosophy centers around understanding core concepts deeply before 
+                      moving to advanced tools. I believe in honest progress over impressive-sounding 
+                      but shallow knowledge.
+                    </motion.p>
+                  </div>
+                </SlideInRight>
+
+                {/* Education */}
+                <motion.div
+                  className="p-4 rounded-lg bg-card border border-border/30 mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <GraduationCap className="w-5 h-5 text-accent" />
+                    <div>
+                      <p className="font-mono font-bold text-foreground">Education</p>
+                      <p className="text-sm text-muted-foreground">
+                        BCA ({PERSONAL_INFO.education.replace("BCA (", "").replace(")", "")})
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Strengths */}
+                <div className="space-y-3">
+                  <p className="font-mono text-sm text-muted-foreground mb-2">Key Strengths:</p>
+                  {strengths.map((strength, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + index * 0.1 }}
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                        <strength.icon className="w-4 h-4 text-accent" />
+                      </div>
+                      <span className="text-sm text-foreground font-mono">{strength.text}</span>
+                    </motion.div>
+                  ))}
                 </div>
+              </NeonCard>
+            </motion.div>
 
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="text-lg"
-                  >
-                    I specialize in building <span className="text-primary font-semibold">modern web apps</span>,{" "}
-                    <span className="text-accent font-semibold">landing pages</span>, and{" "}
-                    <span className="text-secondary font-semibold">SaaS MVPs</span> using no-code platforms and AI tools.
-                  </motion.p>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    I also handle complete deployment using GitHub and Netlify — so clients get a fully live, 
-                    production-ready product delivered fast.
-                  </motion.p>
-                </div>
-              </SlideInRight>
-
+            {/* Right Column - Highlights & Socials */}
+            <div className="space-y-6">
               {/* Highlights Grid */}
-              <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <div className="grid gap-4">
                 {highlights.map((item, index) => (
                   <SlideInLeft key={index} delay={0.1 * (index + 1)}>
-                    <div className="p-4 rounded-lg bg-[hsl(0_0%_3%)] border border-border/30 hover:border-primary/50 transition-colors">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className={`w-10 h-10 rounded-lg bg-${item.color}/10 flex items-center justify-center`}>
-                          <item.icon className={`w-5 h-5 text-${item.color}`} />
+                    <NeonCard className="p-5" variant={item.color as "primary" | "accent" | "secondary"}>
+                      <div className="flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-lg bg-${item.color}/10 flex items-center justify-center shrink-0`}>
+                          <item.icon className={`w-6 h-6 text-${item.color}`} />
+                        </div>
+                        <div>
+                          <p className="font-mono font-bold text-foreground">{item.title}</p>
+                          <p className="text-sm text-muted-foreground">{item.description}</p>
                         </div>
                       </div>
-                      <p className="font-mono font-bold text-foreground">{item.title}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{item.description}</p>
-                    </div>
+                    </NeonCard>
                   </SlideInLeft>
                 ))}
               </div>
 
+              {/* Interests */}
+              <NeonCard className="p-6" variant="accent">
+                <h4 className="font-mono font-bold text-foreground mb-4">Interests</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["DevOps", "Cloud Computing", "Automation", "Open Source", "Linux", "Infrastructure as Code"].map((interest) => (
+                    <span
+                      key={interest}
+                      className="px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-mono"
+                    >
+                      {interest}
+                    </span>
+                  ))}
+                </div>
+              </NeonCard>
+
               {/* Social Links */}
-              <motion.div 
-                className="flex flex-wrap gap-4 justify-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-              >
-                <Button variant="outline-glow" size="sm" asChild>
-                  <a 
-                    href="https://github.com/Youjjwal" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Github className="w-4 h-4" />
-                    GitHub
-                  </a>
-                </Button>
-                <Button variant="outline-glow" size="sm" asChild>
-                  <a 
-                    href="https://linkedin.com/in/youjjwal" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn
-                  </a>
-                </Button>
-              </motion.div>
-            </NeonCard>
-          </motion.div>
+              <NeonCard className="p-6" variant="secondary">
+                <h4 className="font-mono font-bold text-foreground mb-4">Connect With Me</h4>
+                <div className="flex flex-wrap gap-3">
+                  <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} />
+                  <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} />
+                  <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} />
+                  <SocialIcon3D platform="email" href={`mailto:${SOCIAL_LINKS.email}`} />
+                </div>
+              </NeonCard>
+            </div>
+          </div>
         </div>
       </div>
     </section>
