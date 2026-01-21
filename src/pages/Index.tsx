@@ -3,7 +3,6 @@ import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Roadmap from "@/components/sections/Roadmap";
 import Skills from "@/components/sections/Skills";
-import Philosophy from "@/components/sections/Philosophy";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import CursorGlow from "@/components/CursorGlow";
@@ -17,7 +16,6 @@ const Index = () => {
         <Hero />
         <Roadmap />
         <Skills />
-        <Philosophy />
         <About />
         <Contact />
       </main>
