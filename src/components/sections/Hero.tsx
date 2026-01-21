@@ -139,8 +139,6 @@ const Hero = () => {
             <span className="text-devops-docker font-semibold">Containers</span>,{" "}
             <span className="text-devops-jenkins font-semibold">CI/CD</span>, and{" "}
             <span className="text-devops-terraform font-semibold">Infrastructure as Code</span>.
-            <br className="hidden sm:block" />
-            I believe in building strong fundamentals instead of fake projects.
           </motion.p>
 
           {/* Social Icons */}
