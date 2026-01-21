@@ -1,17 +1,14 @@
-// Real social links from Notion
+// Official social links (verified from Notion)
 export const SOCIAL_LINKS = {
   github: "https://github.com/Youjjwal",
   linkedin: "https://www.linkedin.com/in/youjjwal",
   twitter: "https://x.com/uxzwalll",
-  instagram: "https://www.instagram.com/uxzwal/",
-  telegram: "https://t.me/uxzwal",
-  discord: "https://discord.com/channels/@uxzwal",
-  medium: "https://medium.com/@uxzwal",
-  reddit: "https://www.reddit.com/user/elliot_harrold/",
   tumblr: "https://www.tumblr.com/blog/uxzwal",
   quora: "https://www.quora.com/profile/Ujjwal-1020",
   devto: "https://dev.to/uxzwal",
   facebook: "https://www.facebook.com/profile.php?id=100070625400647",
+  instagram: "https://www.instagram.com/uxzwal/",
+  reddit: "https://www.reddit.com/user/elliot_harrold/",
   email: "iamkashyup@gmail.com",
 } as const;
 

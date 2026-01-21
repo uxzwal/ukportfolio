@@ -2,7 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Terminal, Cloud, GitBranch } from "lucide-react";
 import { useState, useEffect } from "react";
-import { PERSONAL_INFO } from "@/lib/constants";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
+import SocialIcon3D from "@/components/SocialIcon3D";
 
 const taglines = ["Linux", "Docker", "AWS", "Kubernetes", "CI/CD", "Terraform"];
 
@@ -127,7 +128,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 0.7, duration: 0.6 }}
@@ -141,6 +142,20 @@ const Hero = () => {
             <br className="hidden sm:block" />
             I believe in building strong fundamentals instead of fake projects.
           </motion.p>
+
+          {/* Social Icons */}
+          <motion.div
+            className="flex items-center justify-center gap-3 mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} size="sm" />
+            <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} size="sm" />
+            <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} size="sm" />
+            <SocialIcon3D platform="instagram" href={SOCIAL_LINKS.instagram} size="sm" />
+            <SocialIcon3D platform="devto" href={SOCIAL_LINKS.devto} size="sm" />
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
