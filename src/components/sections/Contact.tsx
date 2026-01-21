@@ -138,8 +138,12 @@ const Contact = () => {
                   <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} />
                   <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} />
                   <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} />
-                  <SocialIcon3D platform="telegram" href={SOCIAL_LINKS.telegram} />
-                  <SocialIcon3D platform="discord" href={SOCIAL_LINKS.discord} />
+                  <SocialIcon3D platform="instagram" href={SOCIAL_LINKS.instagram} />
+                  <SocialIcon3D platform="facebook" href={SOCIAL_LINKS.facebook} />
+                  <SocialIcon3D platform="devto" href={SOCIAL_LINKS.devto} />
+                  <SocialIcon3D platform="reddit" href={SOCIAL_LINKS.reddit} />
+                  <SocialIcon3D platform="tumblr" href={SOCIAL_LINKS.tumblr} />
+                  <SocialIcon3D platform="quora" href={SOCIAL_LINKS.quora} />
                 </div>
               </motion.div>
 
