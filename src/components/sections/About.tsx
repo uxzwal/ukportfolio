@@ -1,203 +1,101 @@
 import { motion } from "framer-motion";
-import { Terminal, BookOpen, Target, Lightbulb, GraduationCap } from "lucide-react";
-import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
-import NeonCard from "@/components/NeonCard";
-import SocialIcon3D from "@/components/SocialIcon3D";
-import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
+import { PERSONAL_INFO } from "@/lib/constants";
 
 const About = () => {
-  const highlights = [
-    {
-      icon: Terminal,
-      title: "DevOps Focus",
-      description: "Linux, Containers, CI/CD",
-      color: "primary",
-    },
-    {
-      icon: BookOpen,
-      title: "Self-Learning",
-      description: "Documentation & hands-on labs",
-      color: "accent",
-    },
-    {
-      icon: Target,
-      title: "Goal",
-      description: "Entry-level DevOps role",
-      color: "secondary",
-    },
-  ];
-
-  const strengths = [
-    { icon: Lightbulb, text: "Problem-solving mindset" },
-    { icon: BookOpen, text: "Self-learning ability" },
-    { icon: Target, text: "Consistency in learning" },
+  const stats = [
+    { label: "Focus Area", value: "DevOps & Cloud" },
+    { label: "Education", value: "BCA (2025–2028)" },
+    { label: "Approach", value: "Fundamentals First" },
   ];
 
   return (
-    <section id="about" className="section-padding relative bg-background">
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+    <section id="about" className="section-padding relative bg-background overflow-hidden">
+      <div className="absolute inset-0 dot-pattern opacity-20" />
 
-      <div className="container mx-auto relative z-10">
-        <div className="max-w-5xl mx-auto">
-          {/* Section Header */}
-          <FadeInUp className="text-center mb-12">
-            <TextReveal>
-              <span className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-mono mb-4">
-                About Me
-              </span>
-            </TextReveal>
-            <TextReveal delay={0.1}>
-              <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-                <span className="text-gradient">{PERSONAL_INFO.name}</span>
-              </h2>
-            </TextReveal>
-            <TextReveal delay={0.2}>
-              <p className="text-xl text-muted-foreground font-mono">
-                {PERSONAL_INFO.title}
-              </p>
-            </TextReveal>
-          </FadeInUp>
+      <div className="container mx-auto relative z-10 max-w-5xl">
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="text-sm font-mono text-primary tracking-widest uppercase">
+            01 — About
+          </span>
+        </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Left Column - Bio */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <NeonCard className="p-8 h-full" variant="primary">
-                <SlideInRight className="mb-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-                      <Terminal className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-mono font-bold text-foreground">
-                        My Journey
-                      </h3>
-                      <p className="text-sm text-muted-foreground font-mono">
-                        Fundamentals First Approach
-                      </p>
-                    </div>
-                  </div>
+        {/* Main content grid */}
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+          {/* Left: Heading */}
+          <motion.div
+            className="lg:col-span-2"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+              Building with{" "}
+              <span className="text-gradient">purpose</span>,
+              <br />
+              not just{" "}
+              <span className="text-gradient">projects</span>
+            </h2>
+          </motion.div>
 
-                  <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      I'm an aspiring DevOps Engineer focused on building a solid foundation in{" "}
-                      <span className="text-devops-linux font-semibold">Linux</span>,{" "}
-                      <span className="text-devops-aws font-semibold">Cloud Computing</span>, and{" "}
-                      <span className="text-devops-docker font-semibold">Container technologies</span>.
-                    </motion.p>
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      My learning philosophy centers around understanding core concepts deeply before 
-                      moving to advanced tools. I believe in honest progress over impressive-sounding 
-                      but shallow knowledge.
-                    </motion.p>
-                  </div>
-                </SlideInRight>
-
-                {/* Education */}
-                <motion.div
-                  className="p-4 rounded-lg bg-card border border-border/30 mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <GraduationCap className="w-5 h-5 text-accent" />
-                    <div>
-                      <p className="font-mono font-bold text-foreground">Education</p>
-                      <p className="text-sm text-muted-foreground">
-                        BCA ({PERSONAL_INFO.education.replace("BCA (", "").replace(")", "")})
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Strengths */}
-                <div className="space-y-3">
-                  <p className="font-mono text-sm text-muted-foreground mb-2">Key Strengths:</p>
-                  {strengths.map((strength, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-center gap-3"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                        <strength.icon className="w-4 h-4 text-accent" />
-                      </div>
-                      <span className="text-sm text-foreground font-mono">{strength.text}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </NeonCard>
-            </motion.div>
-
-            {/* Right Column - Highlights & Socials */}
-            <div className="space-y-6">
-              {/* Highlights Grid */}
-              <div className="grid gap-4">
-                {highlights.map((item, index) => (
-                  <SlideInLeft key={index} delay={0.1 * (index + 1)}>
-                    <NeonCard className="p-5" variant={item.color as "primary" | "accent" | "secondary"}>
-                      <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 rounded-lg bg-${item.color}/10 flex items-center justify-center shrink-0`}>
-                          <item.icon className={`w-6 h-6 text-${item.color}`} />
-                        </div>
-                        <div>
-                          <p className="font-mono font-bold text-foreground">{item.title}</p>
-                          <p className="text-sm text-muted-foreground">{item.description}</p>
-                        </div>
-                      </div>
-                    </NeonCard>
-                  </SlideInLeft>
-                ))}
-              </div>
-
-              {/* Interests */}
-              <NeonCard className="p-6" variant="accent">
-                <h4 className="font-mono font-bold text-foreground mb-4">Interests</h4>
-                <div className="flex flex-wrap gap-2">
-                  {["DevOps", "Cloud Computing", "Automation", "Open Source", "Linux", "Infrastructure as Code"].map((interest) => (
-                    <span
-                      key={interest}
-                      className="px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-mono"
-                    >
-                      {interest}
-                    </span>
-                  ))}
-                </div>
-              </NeonCard>
-
-              {/* Social Links */}
-              <NeonCard className="p-6" variant="secondary">
-                <h4 className="font-mono font-bold text-foreground mb-4">Connect With Me</h4>
-                <div className="flex flex-wrap gap-3">
-                  <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} />
-                  <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} />
-                  <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} />
-                  <SocialIcon3D platform="email" href={`mailto:${SOCIAL_LINKS.email}`} />
-                </div>
-              </NeonCard>
-            </div>
-          </div>
+          {/* Right: Bio */}
+          <motion.div
+            className="lg:col-span-3 space-y-6"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              I'm {PERSONAL_INFO.name}, an aspiring DevOps Engineer focused on building 
+              a solid foundation in Linux, Cloud Computing, and Container technologies. 
+              My approach is simple — understand concepts deeply before moving to advanced tools.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              I believe in honest progress over impressive-sounding but shallow knowledge. 
+              Every skill I claim is backed by hands-on practice, not just tutorials watched.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Currently learning Docker, AWS, and CI/CD pipelines while strengthening my 
+              Linux fundamentals. I'm looking for internships and entry-level roles where 
+              I can grow and contribute meaningfully.
+            </p>
+          </motion.div>
         </div>
+
+        {/* Stats row */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-3 gap-px mt-20 bg-border rounded-2xl overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="bg-card p-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 + i * 0.1 }}
+            >
+              <p className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                {stat.value}
+              </p>
+              <p className="text-sm text-muted-foreground font-mono tracking-wide uppercase">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

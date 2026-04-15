@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,104 +6,71 @@
 
 @layer base {
   :root {
-    /* Light Mode - Clean DevOps Theme */
-    --background: 210 20% 98%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 5%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 5%;
 
-    /* DevOps Blue */
-    --primary: 217 91% 60%;
+    --primary: 160 84% 39%;
     --primary-foreground: 0 0% 100%;
 
-    /* Kubernetes Purple */
-    --accent: 262 83% 58%;
+    --accent: 270 60% 55%;
     --accent-foreground: 0 0% 100%;
 
-    /* Docker Blue */
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    /* AWS Orange */
-    --warning: 32 95% 44%;
-    --warning-foreground: 0 0% 100%;
-
-    /* Terraform Purple */
-    --terraform: 271 76% 53%;
-    --terraform-foreground: 0 0% 100%;
-
-    /* Jenkins Red */
-    --jenkins: 0 72% 51%;
-    --jenkins-foreground: 0 0% 100%;
-
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 160 84% 39%;
 
     --radius: 0.75rem;
 
-    /* DevOps Glows */
-    --glow-primary: 0 0 40px hsl(217 91% 60% / 0.3);
-    --glow-accent: 0 0 40px hsl(262 83% 58% / 0.3);
-    --glow-secondary: 0 0 40px hsl(199 89% 48% / 0.3);
-    --glow-warning: 0 0 40px hsl(32 95% 44% / 0.3);
-    
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%), hsl(199 89% 48%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
-    --gradient-border: linear-gradient(135deg, hsl(217 91% 60% / 0.4), hsl(262 83% 58% / 0.3), hsl(199 89% 48% / 0.4));
+    --glow-primary: 0 0 40px hsl(160 84% 39% / 0.2);
+    --glow-accent: 0 0 40px hsl(270 60% 55% / 0.2);
   }
 
   .dark {
-    /* Dark Mode - DevOps Terminal Theme */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 3%;
+    --foreground: 0 0% 93%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 93%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 93%;
 
-    /* DevOps Blue */
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 3%;
 
-    /* Kubernetes Purple */
-    --accent: 262 83% 58%;
+    --accent: 270 60% 60%;
     --accent-foreground: 0 0% 100%;
 
-    /* Docker Blue */
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 222 47% 6%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 93%;
 
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 55%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 93%;
 
-    --border: 222 47% 15%;
-    --input: 222 47% 12%;
-    --ring: 217 91% 60%;
+    --border: 0 0% 12%;
+    --input: 0 0% 10%;
+    --ring: 160 84% 39%;
 
-    --glow-primary: 0 0 50px hsl(217 91% 60% / 0.4);
-    --glow-accent: 0 0 50px hsl(262 83% 58% / 0.4);
-    --glow-secondary: 0 0 50px hsl(199 89% 48% / 0.4);
-    --glow-warning: 0 0 50px hsl(32 95% 44% / 0.4);
-    
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%), hsl(199 89% 48%));
-    --gradient-card: linear-gradient(145deg, hsl(222 47% 10%), hsl(222 47% 6%));
-    --gradient-border: linear-gradient(135deg, hsl(217 91% 60% / 0.5), hsl(262 83% 58% / 0.4), hsl(199 89% 48% / 0.5));
+    --glow-primary: 0 0 60px hsl(160 84% 39% / 0.15);
+    --glow-accent: 0 0 60px hsl(270 60% 60% / 0.15);
   }
 }
 
@@ -117,195 +84,64 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Syne', sans-serif;
+  }
+
+  ::selection {
+    background: hsl(160 84% 39% / 0.3);
+    color: hsl(var(--foreground));
   }
 }
 
 @layer components {
-  /* DevOps Terminal Card */
-  .terminal-card {
-    @apply relative bg-card border border-border rounded-xl overflow-hidden;
-    background: var(--gradient-card);
+  /* Section spacing */
+  .section-padding {
+    @apply py-24 md:py-32 px-4 md:px-8;
   }
 
-  .terminal-card::before {
-    content: '';
-    @apply absolute top-0 left-0 right-0 h-8 bg-muted flex items-center px-4;
-  }
-
-  /* 3D Tool Card */
-  .tool-card-3d {
-    @apply relative bg-card border border-border rounded-2xl p-6;
-    transform-style: preserve-3d;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 
-      0 10px 30px -10px hsl(var(--border) / 0.5),
-      0 20px 40px -20px hsl(var(--primary) / 0.1);
-  }
-
-  .tool-card-3d:hover {
-    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
-    box-shadow: 
-      0 20px 40px -10px hsl(var(--border) / 0.6),
-      0 30px 60px -20px hsl(var(--primary) / 0.3);
-  }
-
-  /* Glassmorphism Card */
-  .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
-  }
-
-  .dark .glass-card {
-    @apply bg-card/60;
-  }
-
-  /* Glowing Button */
-  .btn-glow {
-    @apply relative overflow-hidden font-mono font-semibold transition-all duration-300;
-  }
-
-  .btn-glow::before {
-    content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: var(--gradient-hero);
-    filter: blur(20px);
-    z-index: -1;
-  }
-
-  .btn-glow:hover::before {
-    @apply opacity-50;
-  }
-
-  .btn-glow:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-primary);
-  }
-
-  /* Gradient Text */
+  /* Gradient text */
   .text-gradient {
-    background: var(--gradient-hero);
+    background: linear-gradient(135deg, hsl(160 84% 39%), hsl(180 70% 45%), hsl(270 60% 60%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Timeline Styles */
-  .timeline-line {
-    @apply absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2;
-    background: linear-gradient(
-      to bottom,
-      hsl(var(--primary)),
-      hsl(var(--accent)),
-      hsl(var(--secondary)),
-      hsl(var(--primary))
-    );
-  }
-
-  .timeline-node {
-    @apply relative z-10 w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-lg;
-    background: var(--gradient-hero);
-    box-shadow: var(--glow-primary);
-  }
-
-  /* Section Styling */
-  .section-padding {
-    @apply py-20 md:py-28 px-4 md:px-8;
-  }
-
-  /* Skill Badge */
-  .skill-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border font-mono text-sm transition-all duration-300;
-  }
-
-  .skill-badge:hover {
-    @apply border-primary bg-primary/10;
-    box-shadow: var(--glow-primary);
-  }
-
-  /* Learning Progress Bar */
-  .progress-bar {
-    @apply relative h-2 bg-muted rounded-full overflow-hidden;
-  }
-
-  .progress-bar::after {
+  /* Noise texture overlay */
+  .noise-overlay::after {
     content: '';
-    @apply absolute inset-y-0 left-0 rounded-full;
-    background: var(--gradient-hero);
-    animation: progressPulse 2s ease-in-out infinite;
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
   }
 
-  @keyframes progressPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+  /* Minimal glass card */
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/40 rounded-2xl;
   }
 
-  /* Floating Animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
+  /* Grid dot pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+  /* Magnetic hover */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  /* Glow Pulse */
-  .glow-pulse {
-    animation: glowPulse 3s ease-in-out infinite;
-  }
-
-  @keyframes glowPulse {
-    0%, 100% { box-shadow: var(--glow-primary); }
-    50% { box-shadow: 0 0 80px hsl(217 91% 60% / 0.6); }
-  }
-
-  /* Grid Pattern */
-  .grid-pattern {
-    background-image: 
-      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
-
-  /* Social Icon 3D */
-  .social-icon-3d {
-    @apply relative flex items-center justify-center w-12 h-12 rounded-xl bg-muted border border-border transition-all duration-300;
-    transform-style: preserve-3d;
-  }
-
-  .social-icon-3d:hover {
-    transform: translateY(-5px) rotateX(10deg);
-    box-shadow: 
-      0 15px 30px -10px hsl(var(--border) / 0.5),
-      var(--glow-primary);
-  }
-
-  /* Cursor Glow Effect */
-  .cursor-glow {
-    @apply pointer-events-none fixed w-96 h-96 rounded-full opacity-30 blur-3xl -translate-x-1/2 -translate-y-1/2;
-    background: radial-gradient(circle, hsl(var(--primary) / 0.3), transparent 70%);
-  }
-
-  /* Level Badge */
-  .level-badge {
-    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase tracking-wider;
-  }
-
-  .level-badge.learning {
-    @apply bg-primary/20 text-primary border border-primary/30;
-  }
-
-  .level-badge.intermediate {
-    @apply bg-accent/20 text-accent border border-accent/30;
-  }
-
-  .level-badge.beginner {
-    @apply bg-secondary/20 text-secondary border border-secondary/30;
+  /* Smooth line separator */
+  .line-separator {
+    @apply w-full h-px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
   }
 }
 
@@ -314,21 +150,21 @@
     text-wrap: balance;
   }
 
-  /* Scrollbar Styling */
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background;
+    @apply bg-transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted rounded-full;
+    @apply bg-muted-foreground/20 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary/50;
+    @apply bg-primary/40;
   }
 
   /* Reduce motion */
