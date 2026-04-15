@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Terminal, BookOpen, Target, Lightbulb, GraduationCap } from "lucide-react";
+import { Terminal, BookOpen, Target, Lightbulb, GraduationCap, Server } from "lucide-react";
 import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
 import SocialIcon3D from "@/components/SocialIcon3D";
@@ -9,28 +9,28 @@ const About = () => {
   const highlights = [
     {
       icon: Terminal,
-      title: "DevOps Focus",
-      description: "Linux, Containers, CI/CD",
+      title: "Philosophy",
+      description: "Fundamentals first — understand before you automate",
       color: "primary",
     },
     {
-      icon: BookOpen,
-      title: "Self-Learning",
-      description: "Documentation & hands-on labs",
+      icon: Server,
+      title: "Current Focus",
+      description: "Docker, AWS, CI/CD pipelines",
       color: "accent",
     },
     {
       icon: Target,
       title: "Goal",
-      description: "Entry-level DevOps role",
+      description: "Internships & entry-level DevOps roles",
       color: "secondary",
     },
   ];
 
   const strengths = [
-    { icon: Lightbulb, text: "Problem-solving mindset" },
-    { icon: BookOpen, text: "Self-learning ability" },
-    { icon: Target, text: "Consistency in learning" },
+    { icon: Lightbulb, text: "Systems thinking — how things connect" },
+    { icon: BookOpen, text: "Self-directed learning from documentation" },
+    { icon: Target, text: "Consistency — building habits over sprints" },
   ];
 
   return (
@@ -53,7 +53,7 @@ const About = () => {
             </TextReveal>
             <TextReveal delay={0.2}>
               <p className="text-xl text-muted-foreground font-mono">
-                {PERSONAL_INFO.title}
+                Intermediate DevOps Engineer
               </p>
             </TextReveal>
           </FadeInUp>
@@ -74,7 +74,7 @@ const About = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-mono font-bold text-foreground">
-                        My Journey
+                        My Story
                       </h3>
                       <p className="text-sm text-muted-foreground font-mono">
                         Fundamentals First Approach
@@ -89,10 +89,10 @@ const About = () => {
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 }}
                     >
-                      I'm an aspiring DevOps Engineer focused on building a solid foundation in{" "}
+                      I'm <span className="text-foreground font-semibold">Ujjwal Kumar</span>, a DevOps-focused developer building strong foundations in{" "}
                       <span className="text-devops-linux font-semibold">Linux</span>,{" "}
-                      <span className="text-devops-aws font-semibold">Cloud Computing</span>, and{" "}
-                      <span className="text-devops-docker font-semibold">Container technologies</span>.
+                      <span className="text-devops-aws font-semibold">Cloud</span>, and{" "}
+                      <span className="text-devops-docker font-semibold">containerized systems</span>.
                     </motion.p>
 
                     <motion.p
@@ -101,9 +101,19 @@ const About = () => {
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 }}
                     >
-                      My learning philosophy centers around understanding core concepts deeply before 
-                      moving to advanced tools. I believe in honest progress over impressive-sounding 
-                      but shallow knowledge.
+                      I focus on understanding systems deeply and applying them through practical projects.
+                      My learning philosophy centers around grasping core concepts before reaching for
+                      advanced tooling — fundamentals over flashy keywords.
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      Currently working toward my first internship or entry-level DevOps role,
+                      where I can contribute real value while continuing to grow.
                     </motion.p>
                   </div>
                 </SlideInRight>
@@ -129,7 +139,7 @@ const About = () => {
 
                 {/* Strengths */}
                 <div className="space-y-3">
-                  <p className="font-mono text-sm text-muted-foreground mb-2">Key Strengths:</p>
+                  <p className="font-mono text-sm text-muted-foreground mb-2">Core Traits:</p>
                   {strengths.map((strength, index) => (
                     <motion.div
                       key={index}
@@ -172,9 +182,9 @@ const About = () => {
 
               {/* Interests */}
               <NeonCard className="p-6" variant="accent">
-                <h4 className="font-mono font-bold text-foreground mb-4">Interests</h4>
+                <h4 className="font-mono font-bold text-foreground mb-4">Areas of Interest</h4>
                 <div className="flex flex-wrap gap-2">
-                  {["DevOps", "Cloud Computing", "Automation", "Open Source", "Linux", "Infrastructure as Code"].map((interest) => (
+                  {["DevOps Culture", "Cloud Infrastructure", "Automation", "Open Source", "Linux", "Infrastructure as Code", "Observability"].map((interest) => (
                     <span
                       key={interest}
                       className="px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-mono"

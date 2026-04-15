@@ -15,7 +15,8 @@ export const SOCIAL_LINKS = {
 // Personal info
 export const PERSONAL_INFO = {
   name: "Ujjwal Kumar",
-  title: "Aspiring DevOps Engineer | Cloud & Automation Enthusiast",
+  title: "Intermediate DevOps Engineer | Building Scalable & Automated Systems",
+  tagline: "Crafting efficient systems with a focus on performance, automation, and real-world problem solving",
   education: "BCA (2025-2028)",
   email: SOCIAL_LINKS.email,
 } as const;

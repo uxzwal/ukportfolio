@@ -24,7 +24,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-xs font-mono text-white/40 tracking-wide">
-            © {currentYear} {PERSONAL_INFO.name} · DevOps & Cloud Engineering
+            © {currentYear} {PERSONAL_INFO.name} · Intermediate DevOps Engineer
           </p>
         </div>
       </div>

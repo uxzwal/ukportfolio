@@ -1,39 +1,45 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Bot, FileText, Sparkles } from "lucide-react";
+import { ExternalLink, Bot, FileText, Sparkles, Zap } from "lucide-react";
 import { FadeInUp, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
 import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "Kontentai – AI Content Platform",
+    title: "Kontentai",
+    subtitle: "AI Content Platform",
     description:
-      "An AI-powered content platform built using no-code tools with authentication and a clean UI. Leverages cutting-edge AI for automated content creation.",
-    tags: ["AI-Powered", "No-Code", "Authentication"],
+      "AI-powered content system with authentication and automated content workflows. Built with a focus on automation, user experience, and rapid iteration using modern AI-assisted development.",
+    tags: ["AI-Powered", "No-Code", "Auth", "Live"],
     link: "https://kontentai.lovable.app/auth",
     icon: Bot,
     gradient: "from-primary/20 to-accent/20",
     color: "primary",
+    focus: "Automation + AI workflow",
   },
   {
-    title: "RP Bill – Billing Web App",
+    title: "RP Bill",
+    subtitle: "Billing Web App",
     description:
-      "A simple and responsive billing web application deployed live using Netlify. Clean interface for managing bills and invoices efficiently.",
-    tags: ["No-Code", "Billing", "Netlify Deploy"],
+      "Responsive billing system deployed live, focused on real-world billing workflows. Clean interface for managing bills and invoices with a production-ready deployment pipeline.",
+    tags: ["Billing", "Responsive", "Netlify", "Live"],
     link: "https://rpbill.netlify.app/",
     icon: FileText,
     gradient: "from-accent/20 to-secondary/20",
     color: "accent",
+    focus: "Real-world billing workflows",
   },
   {
-    title: "Invoice Bill Generator",
+    title: "Invoice Generator",
+    subtitle: "Invoice Tool",
     description:
-      "A lightweight invoice generation web app with a clean frontend UI. Perfect for freelancers and small businesses to create professional invoices.",
-    tags: ["Frontend UI", "Invoice Tool", "Netlify Deploy"],
+      "Lightweight invoice generation tool focused on simplicity and usability. Enables freelancers and small businesses to create professional invoices instantly without complexity.",
+    tags: ["Frontend", "Invoice", "Live"],
     link: "https://invoicebill.netlify.app/",
     icon: Sparkles,
     gradient: "from-secondary/20 to-primary/20",
     color: "secondary",
+    focus: "Simplicity + usability",
   },
 ];
 
@@ -46,19 +52,20 @@ const Projects = () => {
         {/* Section Header */}
         <FadeInUp className="text-center mb-16">
           <TextReveal>
-            <span className="inline-block px-4 py-1 rounded-full bg-secondary/10 border border-secondary/30 text-secondary text-sm font-mono mb-4">
-              Portfolio
+            <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-secondary/10 border border-secondary/30 text-secondary text-sm font-mono mb-4">
+              <Zap className="w-3.5 h-3.5" />
+              Vibe Coded Systems (Lovable.dev)
             </span>
           </TextReveal>
           <TextReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">My Projects</span>
+              <span className="text-gradient">Vibe Coded Systems</span>
             </h2>
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Real projects built with no-code platforms and AI tools.
-              Each one is live and deployed.
+              Built using modern AI-assisted development workflows, focusing on rapid prototyping,
+              usability, and deployment. Each project is live and solving real problems.
             </p>
           </TextReveal>
         </FadeInUp>
@@ -79,20 +86,28 @@ const Projects = () => {
               >
                 {/* Gradient Header with Icon */}
                 <div
-                  className={`h-32 rounded-lg mb-6 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30 group-hover:scale-105 transition-transform duration-500`}
+                  className={`h-32 rounded-lg mb-6 bg-gradient-to-br ${project.gradient} flex items-center justify-center border border-border/30 group-hover:scale-105 transition-transform duration-500 relative overflow-hidden`}
                 >
-                  <project.icon className="w-12 h-12 text-foreground/60" />
+                  <project.icon className="w-12 h-12 text-foreground/60 relative z-10" />
+                  {/* Subtle pipeline animation line */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                    style={{ width: "60%" }}
+                  />
                 </div>
 
                 {/* Content */}
                 <div className="space-y-4">
                   <div>
-                    <span className="text-xs font-mono text-accent uppercase tracking-wider">
-                      Live Project
+                    <span className="text-xs font-mono text-accent uppercase tracking-wider block mb-1">
+                      {project.focus}
                     </span>
                     <h4 className="text-xl font-mono font-bold text-foreground group-hover:text-primary transition-colors">
                       {project.title}
                     </h4>
+                    <p className="text-sm text-muted-foreground font-mono">{project.subtitle}</p>
                   </div>
 
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -120,7 +135,7 @@ const Projects = () => {
                         className="gap-2"
                       >
                         <ExternalLink className="w-4 h-4" />
-                        Live Demo
+                        View Live
                       </a>
                     </Button>
                   </div>
@@ -130,20 +145,17 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* Note */}
         <motion.div
-          className="text-center mt-16"
+          className="text-center mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <p className="text-muted-foreground mb-4">Want something similar for your business?</p>
-          <Button variant="hero" size="lg" asChild>
-            <a href="#contact">
-              Let's Build Together
-            </a>
-          </Button>
+          <p className="text-muted-foreground text-sm font-mono">
+            These projects demonstrate AI-assisted development workflows and live deployment skills.
+          </p>
         </motion.div>
       </div>
     </section>

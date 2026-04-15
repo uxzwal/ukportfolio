@@ -6,10 +6,11 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { PERSONAL_INFO } from "@/lib/constants";
 
 const navLinks = [
+  { name: "About", href: "#about" },
   { name: "Roadmap", href: "#roadmap" },
   { name: "Skills", href: "#skills" },
-  { name: "Philosophy", href: "#philosophy" },
-  { name: "About", href: "#about" },
+  { name: "Systems", href: "#systems" },
+  { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -50,7 +51,7 @@ const Navbar = () => {
                   {PERSONAL_INFO.name.split(" ")[0]}
                 </span>
                 <span className="text-xs text-muted-foreground font-mono">
-                  DevOps Learner
+                  DevOps Engineer
                 </span>
               </div>
             </a>

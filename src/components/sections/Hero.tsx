@@ -9,12 +9,27 @@ const taglines = ["Linux", "Docker", "AWS", "Kubernetes", "CI/CD", "Terraform"];
 
 const Hero = () => {
   const [currentTagline, setCurrentTagline] = useState(0);
+  const [terminalLine, setTerminalLine] = useState("");
+  const terminalText = "$ whoami → Intermediate DevOps Engineer";
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
     }, 2000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i <= terminalText.length) {
+        setTerminalLine(terminalText.slice(0, i));
+        i++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 40);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -66,15 +81,22 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Pre-headline Badge */}
+          {/* Terminal intro line */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Terminal className="w-4 h-4 text-primary" />
-            <span className="text-sm font-mono text-primary">DevOps Learning Journey</span>
+            <Terminal className="w-4 h-4 text-primary shrink-0" />
+            <span className="text-sm font-mono text-primary">
+              {terminalLine}
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-0.5 h-3.5 bg-primary align-middle ml-0.5"
+              />
+            </span>
           </motion.div>
 
           {/* Name */}
@@ -94,13 +116,22 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <span className="text-foreground">Aspiring </span>
-            <span className="text-gradient">DevOps Engineer</span>
+            <span className="text-gradient">Intermediate DevOps Engineer</span>
             <br />
-            <span className="text-foreground text-2xl sm:text-3xl md:text-4xl">
-              Cloud & Automation Enthusiast
+            <span className="text-foreground text-xl sm:text-2xl md:text-3xl font-normal mt-2 block">
+              building scalable, automated, and reliable systems
             </span>
           </motion.h1>
+
+          {/* Tagline */}
+          <motion.p
+            className="text-sm sm:text-base text-muted-foreground font-mono max-w-xl mx-auto mb-6 italic"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            "{PERSONAL_INFO.tagline}"
+          </motion.p>
 
           {/* Animated Tech Stack */}
           <motion.div
@@ -109,7 +140,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <span className="text-muted-foreground font-mono">Learning:</span>
+            <span className="text-muted-foreground font-mono">Currently working with:</span>
             <span className="relative inline-block min-w-[120px] h-8">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -126,20 +157,18 @@ const Hero = () => {
             </span>
           </motion.div>
 
-          {/* Subheadline */}
-          <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed"
+          {/* Availability badge */}
+          <motion.div
+            className="flex items-center justify-center gap-2 mb-8"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 0.7, duration: 0.6 }}
           >
-            I am a beginner-to-intermediate DevOps learner focused on{" "}
-            <span className="text-devops-linux font-semibold">Linux</span>,{" "}
-            <span className="text-devops-aws font-semibold">Cloud</span>,{" "}
-            <span className="text-devops-docker font-semibold">Containers</span>,{" "}
-            <span className="text-devops-jenkins font-semibold">CI/CD</span>, and{" "}
-            <span className="text-devops-terraform font-semibold">Infrastructure as Code</span>.
-          </motion.p>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-sm font-mono text-green-400">Available for opportunities</span>
+            </div>
+          </motion.div>
 
           {/* Social Icons */}
           <motion.div
@@ -163,9 +192,9 @@ const Hero = () => {
             transition={{ delay: 0.9, duration: 0.5 }}
           >
             <Button variant="hero" size="xl" className="group" asChild>
-              <a href="#roadmap">
+              <a href="#systems">
                 <GitBranch className="w-5 h-5" />
-                View DevOps Roadmap
+                View Systems Thinking
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
@@ -189,8 +218,8 @@ const Hero = () => {
           >
             {[
               { value: "Linux", label: "Foundation", color: "text-devops-linux" },
-              { value: "Cloud", label: "AWS Learning", color: "text-devops-aws" },
-              { value: "DevOps", label: "Journey", color: "text-devops-docker" },
+              { value: "Cloud", label: "AWS + Docker", color: "text-devops-aws" },
+              { value: "CI/CD", label: "Automation", color: "text-devops-docker" },
             ].map((stat, index) => (
               <motion.div 
                 key={index} 

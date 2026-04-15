@@ -14,6 +14,51 @@ const getLevelBadge = (level: string) => {
   return badges[level as keyof typeof badges] || badges.beginner;
 };
 
+const skillCategories = [
+  {
+    title: "Linux & System Fundamentals",
+    color: "text-yellow-400",
+    bg: "bg-yellow-500/10 border-yellow-500/30",
+    tools: ["Linux"],
+  },
+  {
+    title: "Version Control",
+    color: "text-orange-400",
+    bg: "bg-orange-500/10 border-orange-500/30",
+    tools: ["Git", "GitHub"],
+  },
+  {
+    title: "Containers",
+    color: "text-blue-400",
+    bg: "bg-blue-500/10 border-blue-500/30",
+    tools: ["Docker", "Kubernetes"],
+  },
+  {
+    title: "Cloud",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10 border-amber-500/30",
+    tools: ["AWS"],
+  },
+  {
+    title: "CI/CD",
+    color: "text-red-400",
+    bg: "bg-red-500/10 border-red-500/30",
+    tools: ["Jenkins"],
+  },
+  {
+    title: "Infrastructure as Code",
+    color: "text-purple-400",
+    bg: "bg-purple-500/10 border-purple-500/30",
+    tools: ["Terraform", "Ansible", "Python"],
+  },
+  {
+    title: "Monitoring",
+    color: "text-orange-300",
+    bg: "bg-orange-400/10 border-orange-400/30",
+    tools: ["Prometheus", "Grafana"],
+  },
+];
+
 const Skills = () => {
   return (
     <section id="skills" className="section-padding relative bg-background">
@@ -35,11 +80,57 @@ const Skills = () => {
           </TextReveal>
           <TextReveal delay={0.2}>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Technologies I'm learning on my DevOps journey. 
-              Honest progress indicators — no fake mastery claims.
+              Structured by domain. Honest progress indicators — real skill levels, no inflation.
             </p>
           </TextReveal>
         </FadeInUp>
+
+        {/* Skill Categories */}
+        <div className="mb-16">
+          <motion.h3
+            className="text-xl font-mono font-bold text-foreground text-center mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Skill Categories
+          </motion.h3>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {skillCategories.map((cat, catIndex) => {
+              const categoryTools = DEVOPS_TOOLS.filter((t) => cat.tools.includes(t.name));
+              return (
+                <motion.div
+                  key={cat.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: catIndex * 0.08 }}
+                >
+                  <NeonCard className="p-4 h-full" variant="primary">
+                    <div className={`inline-block px-2 py-1 rounded-md text-xs font-mono font-semibold border mb-3 ${cat.bg} ${cat.color}`}>
+                      {cat.title}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {categoryTools.map((tool) => (
+                        <div key={tool.name} className="flex items-center gap-1.5">
+                          <div
+                            className="w-2.5 h-2.5 rounded-full shrink-0"
+                            style={{ backgroundColor: tool.color }}
+                          />
+                          <span className="text-xs font-mono text-foreground">{tool.name}</span>
+                          <span className={`text-xs px-1.5 py-0.5 rounded-full border font-mono ${getLevelBadge(tool.level).class}`}>
+                            {getLevelBadge(tool.level).text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </NeonCard>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
 
         {/* Core Skills with Progress */}
         <div className="mb-16">
@@ -81,7 +172,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Tools Grid with 3D Cards */}
+        {/* Tools Grid */}
         <div>
           <motion.h3
             className="text-xl font-mono font-bold text-foreground text-center mb-8"
@@ -89,7 +180,7 @@ const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Tools & Technologies
+            Tools &amp; Technologies
           </motion.h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-6">
@@ -114,7 +205,7 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Learning Note */}
+        {/* Transparency note */}
         <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -124,8 +215,8 @@ const Skills = () => {
         >
           <NeonCard className="max-w-2xl mx-auto p-6" variant="accent">
             <p className="text-muted-foreground font-mono text-sm">
-              <span className="text-primary font-bold">📚 Note:</span> These progress indicators reflect my honest learning stage. 
-              I believe in transparency over inflated claims.
+              <span className="text-primary font-bold">Transparency:</span> These progress indicators reflect my honest learning stage.
+              I believe in real skills over inflated claims.
             </p>
           </NeonCard>
         </motion.div>
