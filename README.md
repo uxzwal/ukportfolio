@@ -44,7 +44,7 @@ To get a local copy up and running, follow these steps:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Youjjwal/ukportfolio.git
+git clone https://github.com/uxzwal/ukportfolio.git
 
 ```
 
@@ -76,7 +76,7 @@ npm run build
 **Ujjwal Kumar**
 
 * **Email:** [iamkashyup@gmail.com]
-* **LinkedIn:** [linkedin.com/in/Youjjwal](https://www.google.com/search?q=https://linkedin.com/in/Youjjwal)
+* **LinkedIn:** [linkedin.com/in/uxzwal](https://linkedin.com/in/uxzwal)
 * **Portfolio:** [uzwal.netlify.app](https://uzwal.netlify.app)
 
 ---

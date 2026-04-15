@@ -1,7 +1,7 @@
 // Official social links (verified from Notion)
 export const SOCIAL_LINKS = {
-  github: "https://github.com/Youjjwal",
-  linkedin: "https://www.linkedin.com/in/youjjwal",
+  github: "https://github.com/uxzwal",
+  linkedin: "https://linkedin.com/in/uxzwal",
   twitter: "https://x.com/uxzwalll",
   tumblr: "https://www.tumblr.com/blog/uxzwal",
   quora: "https://www.quora.com/profile/Ujjwal-1020",
