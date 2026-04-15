@@ -26,6 +26,9 @@ const Footer = () => {
           <p className="text-xs font-mono text-white/40 tracking-wide">
             © {currentYear} {PERSONAL_INFO.name} · Intermediate DevOps Engineer
           </p>
+          <p className="text-xs font-mono text-white/60 tracking-wide mt-2">
+            Built with intention by Ujjwal Kumar
+          </p>
         </div>
       </div>
     </footer>

@@ -10,8 +10,8 @@ const projects = [
     subtitle: "AI Content Platform",
     description:
       "AI-powered content system with authentication and automated content workflows. Built with a focus on automation, user experience, and rapid iteration using modern AI-assisted development.",
-    tags: ["AI-Powered", "No-Code", "Auth", "Live"],
-    link: "https://kontentai.lovable.app/auth",
+    tags: ["AI-Powered", "Automation", "Auth", "Live"],
+    link: "https://kontentai.app/auth",
     icon: Bot,
     gradient: "from-primary/20 to-accent/20",
     color: "primary",
@@ -54,7 +54,7 @@ const Projects = () => {
           <TextReveal>
             <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-secondary/10 border border-secondary/30 text-secondary text-sm font-mono mb-4">
               <Zap className="w-3.5 h-3.5" />
-              Vibe Coded Systems (Lovable.dev)
+              Vibe Coded Systems
             </span>
           </TextReveal>
           <TextReveal delay={0.1}>

@@ -5,8 +5,8 @@ const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 // Allowed origins for CORS - restrict to your actual domains
 const ALLOWED_ORIGINS = [
-  "https://ukportfolio.lovable.app",
-  "https://id-preview--8efc2afd-1225-4262-88bb-aef5fcad6ddd.lovable.app",
+  "https://uzwal.netlify.app",
+  "https://www.uzwal.netlify.app",
   "http://localhost:8080",
   "http://localhost:5173",
 ];
