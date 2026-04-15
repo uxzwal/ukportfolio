@@ -1,15 +1,11 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Mail, Send, Terminal, MessageSquare } from "lucide-react";
+import { Send, Mail, Check } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { FadeInUp, SlideInLeft, SlideInRight, TextReveal } from "@/components/ScrollReveal";
-import NeonCard from "@/components/NeonCard";
-import SocialIcon3D from "@/components/SocialIcon3D";
 import { supabase } from "@/integrations/supabase/client";
-import { SOCIAL_LINKS, PERSONAL_INFO } from "@/lib/constants";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import SocialIcon3D from "@/components/SocialIcon3D";
 
-// Validation constants (matching server-side)
 const MAX_NAME_LENGTH = 100;
 const MAX_EMAIL_LENGTH = 255;
 const MAX_MESSAGE_LENGTH = 2000;
@@ -20,80 +16,49 @@ const Contact = () => {
     name: "",
     email: "",
     message: "",
-    website: "", // Honeypot field
+    website: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
   const { toast } = useToast();
 
-  // Client-side validation
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-
-    // Validate name
-    const trimmedName = formData.name.trim();
-    if (!trimmedName) {
-      newErrors.name = "Name is required";
-    } else if (trimmedName.length > MAX_NAME_LENGTH) {
-      newErrors.name = `Name must be less than ${MAX_NAME_LENGTH} characters`;
-    }
-
-    // Validate email
-    const trimmedEmail = formData.email.trim();
-    if (!trimmedEmail) {
-      newErrors.email = "Email is required";
-    } else if (trimmedEmail.length > MAX_EMAIL_LENGTH) {
-      newErrors.email = `Email must be less than ${MAX_EMAIL_LENGTH} characters`;
-    } else if (!EMAIL_REGEX.test(trimmedEmail)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    // Validate message
-    const trimmedMessage = formData.message.trim();
-    if (!trimmedMessage) {
-      newErrors.message = "Message is required";
-    } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
-      newErrors.message = `Message must be less than ${MAX_MESSAGE_LENGTH} characters`;
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    else if (formData.name.trim().length > MAX_NAME_LENGTH) newErrors.name = "Name too long";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!EMAIL_REGEX.test(formData.email.trim())) newErrors.email = "Invalid email";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    else if (formData.message.trim().length > MAX_MESSAGE_LENGTH) newErrors.message = "Message too long";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Run client-side validation first
-    if (!validateForm()) {
-      return;
-    }
-
+    if (!validateForm()) return;
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: formData.name.trim(),
           email: formData.email.trim().toLowerCase(),
           message: formData.message.trim(),
-          website: formData.website, // Honeypot
+          website: formData.website,
         },
       });
-
       if (error) throw error;
-
-      toast({
-        title: "Message Sent!",
-        description: "Thanks for reaching out. I'll get back to you soon!",
-      });
-
+      setIsSuccess(true);
       setFormData({ name: "", email: "", message: "", website: "" });
       setErrors({});
+      setTimeout(() => setIsSuccess(false), 4000);
     } catch (error: any) {
-      console.error("Error sending message:", error);
       toast({
         title: "Error",
-        description: error.message || "Failed to send message. Please try email directly.",
+        description: error.message || "Failed to send. Please try email directly.",
         variant: "destructive",
       });
     } finally {
@@ -101,277 +66,176 @@ const Contact = () => {
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
+
+  const inputClasses = (field: string) =>
+    `w-full px-4 py-3.5 rounded-xl bg-card border text-foreground placeholder:text-muted-foreground/50 text-sm transition-all duration-300 outline-none ${
+      errors[field]
+        ? "border-destructive"
+        : focusedField === field
+        ? "border-primary shadow-[0_0_0_3px_hsl(160_84%_39%_/_0.08)]"
+        : "border-border hover:border-border/80"
+    }`;
 
   return (
     <section id="contact" className="section-padding relative bg-background">
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+      <div className="absolute inset-0 dot-pattern opacity-20" />
 
-      <div className="container mx-auto relative z-10">
-        {/* Section Header */}
-        <FadeInUp className="text-center mb-16">
-          <TextReveal>
-            <span className="inline-block px-4 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-sm font-mono mb-4">
-              Contact
-            </span>
-          </TextReveal>
-          <TextReveal delay={0.1}>
-            <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">Let's Connect</span>
-            </h2>
-          </TextReveal>
-          <TextReveal delay={0.2}>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Looking for internships, entry-level DevOps roles, or just want to connect?
-              I'd love to hear from you.
-            </p>
-          </TextReveal>
-        </FadeInUp>
+      <div className="container mx-auto relative z-10 max-w-3xl">
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 text-center"
+        >
+          <span className="text-sm font-mono text-primary tracking-widest uppercase">
+            05 — Contact
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 tracking-tight">
+            Let's <span className="text-gradient">connect</span>
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-md mx-auto">
+            Looking for internships, entry-level roles, or just want to chat? I'd love to hear from you.
+          </p>
+        </motion.div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Contact Info */}
-          <SlideInLeft>
-            <NeonCard className="p-8 h-full" variant="primary">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center">
-                  <Terminal className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-mono font-bold text-foreground">
-                    Get in Touch
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Available for opportunities
-                  </p>
-                </div>
-              </div>
+        {/* Form */}
+        <motion.form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {/* Honeypot */}
+          <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true">
+            <input type="text" name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+          </div>
 
-              {/* Email Card */}
-              <motion.a
-                href={`mailto:${SOCIAL_LINKS.email}`}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-lg bg-card border border-border/30 transition-all hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)_/_0.1)] cursor-pointer group mb-6"
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                    Email
-                  </p>
-                  <span className="text-foreground group-hover:text-primary transition-colors font-mono">
-                    {SOCIAL_LINKS.email}
-                  </span>
-                </div>
-              </motion.a>
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label htmlFor="name" className="block text-sm text-muted-foreground mb-2 font-medium">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                onFocus={() => setFocusedField("name")}
+                onBlur={() => setFocusedField(null)}
+                maxLength={MAX_NAME_LENGTH}
+                className={inputClasses("name")}
+                placeholder="Your name"
+              />
+              {errors.name && <p className="text-destructive text-xs mt-1.5">{errors.name}</p>}
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm text-muted-foreground mb-2 font-medium">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={() => setFocusedField("email")}
+                onBlur={() => setFocusedField(null)}
+                maxLength={MAX_EMAIL_LENGTH}
+                className={inputClasses("email")}
+                placeholder="you@email.com"
+              />
+              {errors.email && <p className="text-destructive text-xs mt-1.5">{errors.email}</p>}
+            </div>
+          </div>
 
-              {/* Social Links */}
+          <div>
+            <label htmlFor="message" className="block text-sm text-muted-foreground mb-2 font-medium">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              onFocus={() => setFocusedField("message")}
+              onBlur={() => setFocusedField(null)}
+              maxLength={MAX_MESSAGE_LENGTH}
+              rows={5}
+              className={`${inputClasses("message")} resize-none`}
+              placeholder="Tell me about the opportunity..."
+            />
+            {errors.message && <p className="text-destructive text-xs mt-1.5">{errors.message}</p>}
+          </div>
+
+          <motion.button
+            type="submit"
+            disabled={isSubmitting || isSuccess}
+            className={`w-full py-3.5 rounded-xl font-semibold text-sm tracking-wide flex items-center justify-center gap-2 transition-all duration-300 ${
+              isSuccess
+                ? "bg-primary text-primary-foreground"
+                : "bg-foreground text-background hover:opacity-90"
+            } disabled:opacity-60`}
+            whileTap={{ scale: 0.98 }}
+          >
+            {isSuccess ? (
+              <>
+                <Check className="w-4 h-4" />
+                Message Sent!
+              </>
+            ) : isSubmitting ? (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="mb-8"
-              >
-                <p className="text-sm text-muted-foreground font-mono mb-4">Connect on socials:</p>
-                <div className="flex flex-wrap gap-3">
-                  <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} />
-                  <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} />
-                  <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} />
-                  <SocialIcon3D platform="instagram" href={SOCIAL_LINKS.instagram} />
-                  <SocialIcon3D platform="facebook" href={SOCIAL_LINKS.facebook} />
-                  <SocialIcon3D platform="devto" href={SOCIAL_LINKS.devto} />
-                  <SocialIcon3D platform="reddit" href={SOCIAL_LINKS.reddit} />
-                  <SocialIcon3D platform="tumblr" href={SOCIAL_LINKS.tumblr} />
-                  <SocialIcon3D platform="quora" href={SOCIAL_LINKS.quora} />
-                </div>
-              </motion.div>
+                className="w-5 h-5 border-2 border-background/30 border-t-background rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+              />
+            ) : (
+              <>
+                Send Message
+                <Send className="w-4 h-4" />
+              </>
+            )}
+          </motion.button>
+        </motion.form>
 
-              {/* Status Card */}
-              <motion.div 
-                className="p-5 rounded-lg bg-gradient-to-br from-green-500/10 to-accent/5 border border-green-500/20"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                  <h4 className="font-mono font-semibold text-foreground">
-                    Open to Opportunities
-                  </h4>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Currently seeking internships and entry-level DevOps/Cloud Engineer positions.
-                </p>
-              </motion.div>
-            </NeonCard>
-          </SlideInLeft>
+        {/* Divider */}
+        <div className="line-separator my-12" />
 
-          {/* Contact Form */}
-          <SlideInRight delay={0.2}>
-            <NeonCard className="p-8" variant="accent">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 border border-accent/30 flex items-center justify-center">
-                  <MessageSquare className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-mono font-bold text-foreground">
-                    Send a Message
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    I'll respond within 24 hours
-                  </p>
-                </div>
-              </div>
+        {/* Alternative contact */}
+        <motion.div
+          className="text-center space-y-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <a
+            href={`mailto:${SOCIAL_LINKS.email}`}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+            {SOCIAL_LINKS.email}
+          </a>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Honeypot field - hidden from users, catches bots */}
-                <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true">
-                  <label htmlFor="website">Website</label>
-                  <input
-                    type="text"
-                    id="website"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleChange}
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-mono text-muted-foreground mb-2"
-                  >
-                    Name <span className="text-xs text-muted-foreground/60">({formData.name.length}/{MAX_NAME_LENGTH})</span>
-                  </label>
-                  <div className={`relative neon-input rounded-lg ${errors.name ? 'border-destructive' : ''}`}>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      maxLength={MAX_NAME_LENGTH}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  {errors.name && (
-                    <p className="text-destructive text-xs mt-1 font-mono">{errors.name}</p>
-                  )}
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-mono text-muted-foreground mb-2"
-                  >
-                    Email
-                  </label>
-                  <div className={`relative neon-input rounded-lg ${errors.email ? 'border-destructive' : ''}`}>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      maxLength={MAX_EMAIL_LENGTH}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm relative z-10"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  {errors.email && (
-                    <p className="text-destructive text-xs mt-1 font-mono">{errors.email}</p>
-                  )}
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-mono text-muted-foreground mb-2"
-                  >
-                    Message <span className="text-xs text-muted-foreground/60">({formData.message.length}/{MAX_MESSAGE_LENGTH})</span>
-                  </label>
-                  <div className={`relative neon-input rounded-lg ${errors.message ? 'border-destructive' : ''}`}>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      maxLength={MAX_MESSAGE_LENGTH}
-                      required
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-lg bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-mono text-sm resize-none relative z-10"
-                      placeholder="Tell me about the opportunity..."
-                    />
-                  </div>
-                  {errors.message && (
-                    <p className="text-destructive text-xs mt-1 font-mono">{errors.message}</p>
-                  )}
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <Button
-                    type="submit"
-                    variant="glow"
-                    size="lg"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-4 h-4" />
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
-              </form>
-            </NeonCard>
-          </SlideInRight>
-        </div>
+          <div className="flex justify-center flex-wrap gap-3">
+            <SocialIcon3D platform="github" href={SOCIAL_LINKS.github} size="sm" />
+            <SocialIcon3D platform="linkedin" href={SOCIAL_LINKS.linkedin} size="sm" />
+            <SocialIcon3D platform="twitter" href={SOCIAL_LINKS.twitter} size="sm" />
+            <SocialIcon3D platform="instagram" href={SOCIAL_LINKS.instagram} size="sm" />
+            <SocialIcon3D platform="devto" href={SOCIAL_LINKS.devto} size="sm" />
+            <SocialIcon3D platform="facebook" href={SOCIAL_LINKS.facebook} size="sm" />
+            <SocialIcon3D platform="reddit" href={SOCIAL_LINKS.reddit} size="sm" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

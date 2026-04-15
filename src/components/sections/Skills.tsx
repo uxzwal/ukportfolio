@@ -1,134 +1,126 @@
 import { motion } from "framer-motion";
-import { FadeInUp, TextReveal } from "@/components/ScrollReveal";
-import NeonCard from "@/components/NeonCard";
-import DevOpsToolCard from "@/components/DevOpsToolCard";
 import { DEVOPS_TOOLS, CORE_SKILLS } from "@/lib/constants";
 
-const getLevelBadge = (level: string) => {
-  const badges = {
-    intermediate: { text: "Intermediate", class: "bg-green-500/20 text-green-400 border-green-500/30" },
-    learning: { text: "Learning", class: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
-    beginner: { text: "Beginner", class: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
-    upcoming: { text: "Upcoming", class: "bg-gray-500/20 text-gray-400 border-gray-500/30" },
-  };
-  return badges[level as keyof typeof badges] || badges.beginner;
+const levelColors: Record<string, { bg: string; text: string; dot: string }> = {
+  intermediate: { bg: "bg-primary/10", text: "text-primary", dot: "bg-primary" },
+  learning: { bg: "bg-accent/10", text: "text-accent", dot: "bg-accent" },
+  beginner: { bg: "bg-muted", text: "text-muted-foreground", dot: "bg-muted-foreground" },
+  upcoming: { bg: "bg-muted/50", text: "text-muted-foreground/60", dot: "bg-muted-foreground/40" },
 };
 
 const Skills = () => {
   return (
     <section id="skills" className="section-padding relative bg-background">
-      {/* Background */}
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+      <div className="absolute inset-0 dot-pattern opacity-20" />
 
-      <div className="container mx-auto relative z-10">
-        {/* Section Header */}
-        <FadeInUp className="text-center mb-16">
-          <TextReveal>
-            <span className="inline-block px-4 py-1 rounded-full bg-devops-docker/10 border border-devops-docker/30 text-devops-docker text-sm font-mono mb-4">
-              Skills & Tools
-            </span>
-          </TextReveal>
-          <TextReveal delay={0.1}>
-            <h2 className="text-3xl md:text-5xl font-mono font-bold mb-4">
-              <span className="text-gradient">DevOps Toolkit</span>
-            </h2>
-          </TextReveal>
-          <TextReveal delay={0.2}>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Technologies I'm learning on my DevOps journey. 
-              Honest progress indicators — no fake mastery claims.
-            </p>
-          </TextReveal>
-        </FadeInUp>
+      <div className="container mx-auto relative z-10 max-w-5xl">
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="text-sm font-mono text-primary tracking-widest uppercase">
+            03 — Skills
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 tracking-tight">
+            Tools & <span className="text-gradient">technologies</span>
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-lg text-lg">
+            Honest progress indicators — no fake mastery claims.
+          </p>
+        </motion.div>
 
         {/* Core Skills with Progress */}
-        <div className="mb-16">
+        <div className="mb-20">
           <motion.h3
-            className="text-xl font-mono font-bold text-foreground text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="text-sm font-mono text-muted-foreground tracking-widest uppercase mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
             Core Competencies
           </motion.h3>
           
-          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
             {CORE_SKILLS.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.06, duration: 0.5 }}
+                className="group"
               >
-                <NeonCard className="p-4" variant="primary">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-mono text-sm text-foreground">{skill.name}</span>
-                    <span className="text-xs text-muted-foreground font-mono">{skill.progress}%</span>
-                  </div>
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.progress}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
-                    />
-                  </div>
-                </NeonCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Tools Grid with 3D Cards */}
-        <div>
-          <motion.h3
-            className="text-xl font-mono font-bold text-foreground text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Tools & Technologies
-          </motion.h3>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-6">
-            {DEVOPS_TOOLS.map((tool, index) => (
-              <motion.div
-                key={tool.name}
-                initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="flex flex-col items-center"
-              >
-                <DevOpsToolCard name={tool.name} color={tool.color} />
-                <div className="mt-3 text-center">
-                  <span className="font-mono text-sm text-foreground block mb-1">{tool.name}</span>
-                  <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-mono border ${getLevelBadge(tool.level).class}`}>
-                    {getLevelBadge(tool.level).text}
-                  </span>
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                  <span className="text-xs font-mono text-muted-foreground">{skill.progress}%</span>
+                </div>
+                <div className="h-1 bg-muted rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full rounded-full"
+                    style={{
+                      background: `linear-gradient(90deg, hsl(160 84% 39%), hsl(180 70% 45%))`,
+                    }}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.progress}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.2 + index * 0.06, ease: [0.25, 0.4, 0.25, 1] }}
+                  />
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Learning Note */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          <NeonCard className="max-w-2xl mx-auto p-6" variant="accent">
-            <p className="text-muted-foreground font-mono text-sm">
-              <span className="text-primary font-bold">📚 Note:</span> These progress indicators reflect my honest learning stage. 
-              I believe in transparency over inflated claims.
-            </p>
-          </NeonCard>
-        </motion.div>
+        {/* Tools Grid */}
+        <div>
+          <motion.h3
+            className="text-sm font-mono text-muted-foreground tracking-widest uppercase mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Tools & Technologies
+          </motion.h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {DEVOPS_TOOLS.map((tool, index) => {
+              const level = levelColors[tool.level] || levelColors.beginner;
+              return (
+                <motion.div
+                  key={tool.name}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.04 }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="group cursor-default"
+                >
+                  <div className="bg-card border border-border/50 rounded-xl p-5 text-center transition-all duration-300 group-hover:border-border group-hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.2)]">
+                    {/* Color indicator */}
+                    <div
+                      className="w-10 h-10 rounded-lg mx-auto mb-3 flex items-center justify-center text-lg font-bold"
+                      style={{
+                        backgroundColor: `${tool.color}15`,
+                        color: tool.color,
+                      }}
+                    >
+                      {tool.name[0]}
+                    </div>
+                    <p className="text-sm font-medium text-foreground mb-2">{tool.name}</p>
+                    <span className={`inline-flex items-center gap-1.5 text-xs font-mono ${level.text}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${level.dot}`} />
+                      {tool.level.charAt(0).toUpperCase() + tool.level.slice(1)}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
