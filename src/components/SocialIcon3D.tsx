@@ -15,17 +15,19 @@ interface SocialIcon3DProps {
   size?: "sm" | "md" | "lg";
 }
 
-const platformConfig: Record<Platform, { icon: React.ElementType; color: string; label: string }> = {
-  github: { icon: Github, color: "var(--foreground)", label: "GitHub" },
-  linkedin: { icon: Linkedin, color: "#0A66C2", label: "LinkedIn" },
-  twitter: { icon: Twitter, color: "#1DA1F2", label: "X" },
-  email: { icon: Mail, color: "#EA4335", label: "Email" },
-  instagram: { icon: Instagram, color: "#E4405F", label: "Instagram" },
-  reddit: { icon: MessageCircle, color: "#FF4500", label: "Reddit" },
-  tumblr: { icon: BookOpen, color: "#36465D", label: "Tumblr" },
-  quora: { icon: HelpCircle, color: "#B92B27", label: "Quora" },
-  devto: { icon: Code2, color: "var(--foreground)", label: "Dev.to" },
-  facebook: { icon: Facebook, color: "#1877F2", label: "Facebook" },
+// Brand colors are kept for hover halo only — the icon itself always uses
+// foreground tokens so dark-on-dark icons (GitHub, Tumblr, Dev.to) stay legible.
+const platformConfig: Record<Platform, { icon: React.ElementType; label: string }> = {
+  github: { icon: Github, label: "GitHub" },
+  linkedin: { icon: Linkedin, label: "LinkedIn" },
+  twitter: { icon: Twitter, label: "X" },
+  email: { icon: Mail, label: "Email" },
+  instagram: { icon: Instagram, label: "Instagram" },
+  reddit: { icon: MessageCircle, label: "Reddit" },
+  tumblr: { icon: BookOpen, label: "Tumblr" },
+  quora: { icon: HelpCircle, label: "Quora" },
+  devto: { icon: Code2, label: "Dev.to" },
+  facebook: { icon: Facebook, label: "Facebook" },
 };
 
 const SocialIcon3D = ({ platform, href, size = "md" }: SocialIcon3DProps) => {

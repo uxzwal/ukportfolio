@@ -8,12 +8,6 @@ import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 const About = () => {
   const highlights = [
     {
-      icon: Terminal,
-      title: "Philosophy",
-      description: "Fundamentals first — understand before you automate",
-      color: "primary",
-    },
-    {
       icon: Server,
       title: "Current Focus",
       description: "Docker, AWS, CI/CD pipelines",

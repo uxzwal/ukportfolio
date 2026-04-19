@@ -1,22 +1,10 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Bot, FileText, Sparkles, Zap } from "lucide-react";
+import { ExternalLink, FileText, Sparkles, Zap } from "lucide-react";
 import { FadeInUp, TextReveal } from "@/components/ScrollReveal";
 import NeonCard from "@/components/NeonCard";
 import { Button } from "@/components/ui/button";
 
 const projects = [
-  {
-    title: "Kontentai",
-    subtitle: "AI Content Platform",
-    description:
-      "AI-powered content system with authentication and automated content workflows. Built with a focus on automation, user experience, and rapid iteration using modern AI-assisted development.",
-    tags: ["AI-Powered", "Automation", "Auth", "Live"],
-    link: "https://kontentai.app/auth",
-    icon: Bot,
-    gradient: "from-primary/20 to-accent/20",
-    color: "primary",
-    focus: "Automation + AI workflow",
-  },
   {
     title: "RP Bill",
     subtitle: "Billing Web App",
