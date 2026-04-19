@@ -77,7 +77,7 @@ export const ROADMAP_LEVELS = [
 export const DEVOPS_TOOLS = [
   { name: "Linux", color: "#FCC624", level: "learning" as const },
   { name: "Git", color: "#F05032", level: "intermediate" as const },
-  { name: "GitHub", color: "#181717", level: "intermediate" as const },
+  { name: "GitHub", color: "#F0F6FC", level: "intermediate" as const },
   { name: "Docker", color: "#2496ED", level: "learning" as const },
   { name: "Kubernetes", color: "#326CE5", level: "beginner" as const },
   { name: "AWS", color: "#FF9900", level: "beginner" as const },

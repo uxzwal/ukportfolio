@@ -7,8 +7,8 @@ import { PERSONAL_INFO } from "@/lib/constants";
 
 const navLinks = [
   { name: "About", href: "#about" },
-  { name: "Roadmap", href: "#roadmap" },
   { name: "Skills", href: "#skills" },
+  { name: "Stack", href: "#badges" },
   { name: "Systems", href: "#systems" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
