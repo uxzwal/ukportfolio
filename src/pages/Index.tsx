@@ -16,7 +16,7 @@ const Index = () => {
       <PageCurtain />
       <CursorGlow />
       <Navbar />
-      <main className="[&>section]:snap-start snap-y snap-proximity">
+      <main>
         <Hero />
         <About />
         <Skills />
