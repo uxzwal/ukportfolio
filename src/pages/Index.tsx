@@ -8,10 +8,12 @@ import DevOpsDepth from "@/components/sections/DevOpsDepth";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 import CursorGlow from "@/components/CursorGlow";
+import PageCurtain from "@/components/PageCurtain";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <PageCurtain />
       <CursorGlow />
       <Navbar />
       <main>

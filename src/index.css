@@ -81,6 +81,17 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
+  /* Disable snap on small screens & reduced motion for comfort */
+  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; }
   }
 
   body {
