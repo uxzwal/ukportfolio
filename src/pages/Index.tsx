@@ -16,14 +16,14 @@ const Index = () => {
       <PageCurtain />
       <CursorGlow />
       <Navbar />
-      <main className="snap-y snap-proximity">
-        <section className="snap-start"><Hero /></section>
-        <section className="snap-start"><About /></section>
-        <section className="snap-start"><Skills /></section>
-        <section className="snap-start"><FloatingBadges /></section>
-        <section className="snap-start"><DevOpsDepth /></section>
-        <section className="snap-start"><Projects /></section>
-        <section className="snap-start"><Contact /></section>
+      <main className="[&>section]:snap-start snap-y snap-proximity">
+        <Hero />
+        <About />
+        <Skills />
+        <FloatingBadges />
+        <DevOpsDepth />
+        <Projects />
+        <Contact />
       </main>
       <Footer />
     </div>
