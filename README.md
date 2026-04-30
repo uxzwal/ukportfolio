@@ -9,7 +9,7 @@ This portfolio represents my journey as an **Intermediate DevOps Engineer**, foc
 Rather than just showcasing projects, this platform is designed as a **system-oriented experience** — reflecting how I approach infrastructure, workflows, and real-world problem solving.
 
 🔗 **Live Website:**
-👉 [https://uzwal.netlify.app/](https://uzwal.netlify.app/)
+👉 [https://uxzwal.netlify.app/](https://uxzwal.netlify.app/)
 
 ---
 
