@@ -35,6 +35,4 @@ jobs:
       - name: Deploy to gh-pages
         run: npm run deploy -- --dotfiles
         env:
-          GIT_USER: github-actions[bot]
-          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
