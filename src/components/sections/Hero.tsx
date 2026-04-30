@@ -4,6 +4,7 @@ import { ArrowRight, Terminal, Cloud, GitBranch } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 import SocialIcon3D from "@/components/SocialIcon3D";
+import HeroParticles from "@/components/HeroParticles";
 
 const taglines = ["Linux", "Docker", "AWS", "Kubernetes", "CI/CD", "Terraform"];
 
@@ -33,9 +34,12 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background snap-start">
       {/* Animated Grid Background */}
       <div className="absolute inset-0 grid-pattern opacity-20" />
+
+      {/* R3F particle depth field */}
+      <HeroParticles />
       
       {/* Floating Terminal Elements */}
       <motion.div
